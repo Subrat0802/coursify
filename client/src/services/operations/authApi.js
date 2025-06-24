@@ -66,20 +66,23 @@ export const signin = (
 
       console.log("SIGNIN RESPONSE..........", response);
 
-      if(!response.data.success){
-        throw new Error(response.data.message); 
+      if(!response.data.success){        
+        throw new Error(response.data.message);  
       }
+      
 
       dispatch(setUserData(response.data.user));
       dispatch(setToken(response.data.user.token))  
     
-      toast.dismiss(toastId);    
+      toast.dismiss(toastId);  
 
       navigate("/dashboard"); // optionally pass path like navigate("/dashboard")
       toast.success(response.data.message)
     } catch (error) {
       console.log("ERROR while signin", error);
-      alert(error.response.data.message)
+      toast.dismiss(toastId); 
+      toast.error(error.response.data.message);
+      
     } finally {
       dispatch(setLoading(false));
     }

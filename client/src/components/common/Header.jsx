@@ -4,6 +4,7 @@ import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { setToken, setUserData } from "../../slices/authSlice";
+import toast from "react-hot-toast";
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const token = useSelector((state) => state.auth.token);
         dispatch(setToken(null));
         dispatch(setUserData(null));
         navigate("/");
+        toast.success("Logout Successfully");
     }
   return (
     <div className="w-full fixed top-0 z-10 h-[4rem] text-white font-sans py-3">

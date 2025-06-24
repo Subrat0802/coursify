@@ -6,10 +6,6 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Dasboard from "./pages/Dasboard";
 import Cookies from "js-cookie";
-// import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
-// import { setToken } from "./slices/authSlice";
-
 function App() {
   
   return (

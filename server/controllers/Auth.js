@@ -111,7 +111,7 @@ exports.signin = async (req, res) => {
       existingUser.password
     );
     if (!comaprePassword) {
-      return res.statsu(408).json({
+      return res.status(408).json({
         message: "Incorrect password, Try again.",
         success: false,
       });
