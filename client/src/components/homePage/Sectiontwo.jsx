@@ -42,12 +42,12 @@ const Sectiontwo = () => {
               type={"primary"}
               icon={<FaArrowRight />}
             />
-            <Button text={"Book a demo"} type={"primary"} />
+            <Button text={"Book a demo"} type={"secondary"} />
           </div>
         </div>
         {/* //"#5227FF", "#7cff67", "#5227FF" */}
         <div className=" border border-white/10 relative  flex w-full md-w-[50%]">
-         <div className="absolute w-[60%] m-16 h-[70%] bg-gradient-to-br from-[#342961] via-[#134d0b] to-[#5227FF] rounded-full blur-2xl"></div>
+         <div className="absolute w-[60%] m-16 h-[70%] bg-gradient-to-br from-[#342961] via-[#134d0b] to-[#5227FF] rounded-full blur-3xl"></div>
           <div className="text-sm flex flex-col   text-yellow-300  w-fit px-1  py-1">
             <p>1</p>
             <p>2</p>

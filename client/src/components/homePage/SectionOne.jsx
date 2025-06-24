@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Aurora from "../ui/AuroraBg";
 import BecomeAinstructoeBtn from "../ui/BecomeAinstructoeBtn";
 import ShinyText from "../ui/ShinyText";
@@ -12,7 +13,7 @@ const SectionOne = () => {
         <SplitText
           text="Empower Your Future with Coding Skills"
           className="text-6xl font-bold w-full  text-white/70 text-center pb-3"
-          delay={100}
+          delay={20}
           duration={0.6}
           ease="power3.out"
           splitType="chars"
@@ -38,7 +39,7 @@ const SectionOne = () => {
           />
         </div>
 
-        <BecomeAinstructoeBtn />
+        <Link to={"/signup"}><BecomeAinstructoeBtn /></Link>
       </div>
     </div>
   );

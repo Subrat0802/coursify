@@ -16,6 +16,8 @@ exports.signup = async (req, res) => {
       confirmPassword,
       accountType,
     } = req.body;
+
+    // console.log("accountType", accountType);
     if (
       !firstname ||
       !lastname ||
@@ -71,7 +73,8 @@ exports.signup = async (req, res) => {
 
     res.status(200).json({
         message:"User registered successfully",
-        success:true
+        success:true,
+        response
     })
 
     res.statu
@@ -79,6 +82,7 @@ exports.signup = async (req, res) => {
     return res.status(500).json({
       message: "Server error while signup.",
       success: false,
+      
     });
   }
 };
