@@ -72,17 +72,16 @@ exports.signup = async (req, res) => {
     });
 
     res.status(200).json({
-        message:"User registered successfully",
-        success:true,
-        response
-    })
+      message: "User registered successfully",
+      success: true,
+      response,
+    });
 
-    res.statu
+    res.statu;
   } catch (error) {
     return res.status(500).json({
       message: "Server error while signup.",
       success: false,
-      
     });
   }
 };
@@ -144,6 +143,40 @@ exports.signin = async (req, res) => {
     return res.status(500).json({
       message: "Server error while signin.",
       success: false,
+    });
+  }
+};
+
+exports.getUser = async (req, res) => {
+  try {
+    const { id } = req.user;
+    if (!id) {
+      return res.status(409).json({
+        message: "Login first, No user found",
+        success: false,
+      });
+    }
+
+    const checkUser = await User.findById({_id:id})
+      .populate("additionalDetails")
+      .exec();
+    if (!checkUser) {
+      return res.status(409).json({
+        message: "No user found with this user id",
+        success: false,
+      });
+    }
+
+    res.status(200).json({
+      message: "User data. Get user route",
+      success:true,
+      data: checkUser,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Server error while get user.",
+      success: false,
+      error:error.message
     });
   }
 };

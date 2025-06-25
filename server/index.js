@@ -16,12 +16,9 @@ app.use(
         credentials:true,
     })
 )
-
-
 app.use("/api/v1/auth", authRoutes);
 
 const PORT = process.env.PORT || 4000;
-
 
 app.listen(PORT, (req, res) => {
     console.log(`App is running on PORT ${PORT}`)

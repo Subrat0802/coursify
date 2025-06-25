@@ -1,12 +1,20 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from "react";
+import { getUser } from "../services/operations/authApi";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../slices/authSlice";
 
 const Dasboard = () => {
-    const token = useSelector((state) => state.token);
-    console.log("DASHBOARD", token);
-  return (
-    <div>Dasboard</div>
-  )
-}
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchUser = async () => {
+      const data = await getUser();
+      dispatch(setUserData(data));
+    };
 
-export default Dasboard
+    fetchUser();
+  }, []);
+  return <div>Dasboard</div>;
+};
+
+export default Dasboard;

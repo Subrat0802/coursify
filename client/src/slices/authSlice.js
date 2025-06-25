@@ -1,11 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit"
 import Cookies from "js-cookie";
+import { getUser } from "../services/operations/authApi";
 
 const tokenCook = Cookies.get("token");
 
+const data = await getUser();
+console.log("data from slice auth", data);
+
 const initialState = {
     token: tokenCook ? tokenCook : null,
-    userData: null,
+    userData: data ? data : null,
     loading: false
 }
 

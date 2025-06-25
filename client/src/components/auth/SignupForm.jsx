@@ -35,8 +35,7 @@ const SignupForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("RESPOSNEEEEEE", userData);
-    const resposne = dispatch(
+    dispatch(
       signup(
         role,
         firstname,
@@ -47,7 +46,7 @@ const SignupForm = () => {
         navigate
       )
     );
-    console.log("Hello", resposne);
+
   };
 
   return (

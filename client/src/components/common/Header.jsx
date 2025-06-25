@@ -7,16 +7,17 @@ import { setToken, setUserData } from "../../slices/authSlice";
 import toast from "react-hot-toast";
 
 const Header = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-const token = useSelector((state) => state.auth.token);
-    const handleLogOut = () => {
-        Cookies.remove("token");
-        dispatch(setToken(null));
-        dispatch(setUserData(null));
-        navigate("/");
-        toast.success("Logout Successfully");
-    }
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.auth.userData);
+  const handleLogOut = () => {
+    Cookies.remove("token");
+    dispatch(setToken(null));
+    dispatch(setUserData(null));
+    navigate("/");
+    toast.success("Logout Successfully");
+  };
   return (
     <div className="w-full fixed top-0 z-10 h-[4rem] text-white font-sans py-3">
       <div className="flex max-w-7xl mx-auto items-center h-full justify-between ">
@@ -38,8 +39,13 @@ const token = useSelector((state) => state.auth.token);
             <li className="cursor-pointer">Contact us</li>
           </ul>
         </div>
-        {token ? (
-          <p className="cursor-pointer" onClick={handleLogOut}>logout</p>
+        {token && user ? (
+          <div className="flex gap-3 justify-center items-center">
+            <p className="cursor-pointer" onClick={handleLogOut}>
+              logout
+            </p>
+            <Link to="/dashboard"><img className="w-8 rounded-full" src={user.image} /></Link>
+          </div>
         ) : (
           <div className="flex justify-center items-center gap-5">
             <Link to={"/signin"}>

@@ -8,7 +8,7 @@ const Sectiontwo = ({ rev, codeblock, desc, subDesc }) => {
   return (
     <div className=" w-full flex justify-center py-10">
       <div
-        className={`flex flex-col gap-10 md:${rev} text-white w-full max-w-7xl`}
+        className={`flex ${rev} gap-10  text-white w-full max-w-7xl`}
       >
         <div className="w-full md-w-[50%] flex flex-col justify-between">
           <div>

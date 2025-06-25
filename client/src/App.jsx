@@ -6,8 +6,8 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Dasboard from "./pages/Dasboard";
 import Cookies from "js-cookie";
+import ProtectedRoute from "./components/auth/ProtectedROute";
 function App() {
-  
   return (
     <div className="min-h-[100vh] bg-[#0f0f0f]">
       <Header></Header>
@@ -15,7 +15,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/dashboard" element={<Dasboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dasboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );

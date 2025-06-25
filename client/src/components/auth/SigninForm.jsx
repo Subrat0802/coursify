@@ -13,7 +13,6 @@ const SigninForm = () => {
     password: "",
   });
 
-  console.log("signinData", signinData);
 
   const {email, password} = signinData;
 
@@ -26,8 +25,7 @@ const SigninForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const res = dispatch(signin(email, password, navigate))
-    console.log("SIGNIN>>FRONTEND", res);
+    dispatch(signin(email, password, navigate))
   };
 
   return (
