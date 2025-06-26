@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
@@ -5,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { setToken, setUserData } from "../../slices/authSlice";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
+import { getCategory } from "../../services/operations/categoryApi";
+import { setCategory } from "../../slices/categorySlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -18,8 +22,21 @@ const Header = () => {
     navigate("/");
     toast.success("Logout Successfully");
   };
+
+  useEffect(() => {
+    const fetchCat = async () => {
+      const res = await getCategory();
+      console.log("RESSS CATEGORY FE", res);
+      dispatch(setCategory(res.data.data));
+    };
+    fetchCat();
+  }, []);
+
+
+  const category = useSelector((state) => state.category.categories);
+
   return (
-    <div className="w-full fixed top-0 z-10 h-[4rem] text-white font-sans py-3">
+    <div className="w-full fixed top-0 z-10 h-[4rem] text-white font-sans py-3 border-b border-white/10">
       <div className="flex max-w-7xl mx-auto items-center h-full justify-between ">
         <div>
           <Link to={"/"}>
@@ -29,12 +46,25 @@ const Header = () => {
         <div>
           <ul className="flex gap-8 font-semibold">
             <li className="cursor-pointer">Home</li>
-            <li className="flex gap-2 cursor-pointer justify-center items-center">
-              Category{" "}
-              <div className="mt-1">
-                <MdKeyboardDoubleArrowDown />
+
+            <div className="relative group flex flex-col items-center">
+
+              <div className="bg-[#131212] rounded-lg w-36 absolute hidden group-hover:block p-2 mt-6 mr-2 z-10">
+                {
+                  category && category.map((el) => (
+                    <p className="pl-2 pr-5  hover:scale-95 transition-all duration-200 py-3 hover:bg-gradient-to-tr from-indigo-900 via-purple-900 to-green-800 border-white/10 w-full rounded-lg cursor-pointer "  key={el._id}>{el.name}</p>
+                  ))
+                }
               </div>
-            </li>
+
+              <li className="flex gap-2 cursor-pointer justify-center items-center">
+                Category{" "}
+                <div className="mt-1">
+                  <MdKeyboardDoubleArrowDown />
+                </div>
+              </li>
+            </div>
+
             <li className="cursor-pointer">About</li>
             <li className="cursor-pointer">Contact us</li>
           </ul>
@@ -44,15 +74,17 @@ const Header = () => {
             <p className="cursor-pointer" onClick={handleLogOut}>
               logout
             </p>
-            <Link to="/dashboard"><img className="w-8 rounded-full" src={user.image} /></Link>
+            <Link to="/dashboard">
+              <img className="w-8 rounded-full" src={user.image} />
+            </Link>
           </div>
         ) : (
           <div className="flex justify-center items-center gap-5">
             <Link to={"/signin"}>
-              <Button text={"Login"} type={"teritory"} />
+              <Button text={"Login"} btn={"teritory"} />
             </Link>
             <Link to={"/signup"}>
-              <Button text={"Signup"} type={"teritory"} />
+              <Button text={"Signup"} btn={"teritory"} />
             </Link>
           </div>
         )}

@@ -24,10 +24,10 @@ const Sectiontwo = ({ rev, codeblock, desc, subDesc }) => {
           <div className="flex gap-5 pt-10">
             <Button
               text={"Try it yourself"}
-              type={"primary"}
+              btn={"primary"}
               icon={<FaArrowRight />}
             />
-            <Button text={"Book a demo"} type={"secondary"} />
+            <Button text={"Book a demo"} btn={"secondary"} />
           </div>
         </div>
         {/* //"#5227FF", "#7cff67", "#5227FF" */}

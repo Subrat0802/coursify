@@ -64,10 +64,14 @@ export const signin = (email, password, navigate) => {
       // dispatch(setUserData(response.data.user));
       dispatch(setToken(response.data.user.token));
 
-      toast.dismiss(toastId);
+      const userData = await getUser();
 
-      navigate("/dashboard"); // optionally pass path like navigate("/dashboard")
+      dispatch(setUserData(userData));
+
+      toast.dismiss(toastId);
       toast.success(response.data.message);
+      navigate("/dashboard"); // optionally pass path like navigate("/dashboard")
+      
     } catch (error) {
       console.log("ERROR while signin", error);
       toast.dismiss(toastId);

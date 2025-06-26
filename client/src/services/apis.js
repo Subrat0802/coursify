@@ -6,3 +6,8 @@ export const endpoints = {
     SIGNIN_API: BASE_URL + "/auth/signin",
     GETUSER_API: BASE_URL + "/auth/getUser",
 }
+
+export const categoryEndpoints = {
+    CREATE_CATEGORY_API: BASE_URL + "/category/createCategory",
+    GET_ALL_CATEGORY_API: BASE_URL + "/category/getAllCategory" 
+}

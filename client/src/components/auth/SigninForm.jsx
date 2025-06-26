@@ -49,8 +49,8 @@ const SigninForm = () => {
           value={password}
           onChange={handleOnChange}
         />
-        <input type="submit" text="login" />
-        {/* <Button onClick={handleSubmit} text={"Sign In"} type={"primary"} /> */}
+        {/* <input type="submit" text="login" /> */}
+        <Button onClick={handleSubmit} text={"Sign In"} btn={"primary"} type={"submit"} />
       </form>
     </div>
   );

@@ -104,11 +104,11 @@ const SignupForm = () => {
               name="email"
               onChange={(e) => handleChange(e)}
             />
-            <InputTag
+            {/* <InputTag
               placeholder={"Phone Number"}
               type={"text"}
               name="number"
-            />
+            /> */}
 
             <div className=" flex justify-between gap-2">
               <InputTag
@@ -128,8 +128,8 @@ const SignupForm = () => {
                 onChange={(e) => handleChange(e)}
               />
             </div>
-            <input type="submit" text="signup" />
-            {/* <Button text={"Sign Up"} type={"submit"} /> */}
+            {/* <input type="submit" text="signup" /> */}
+            <Button text={"Sign Up"} type={"submit"} btn={"primary"}/>
           </form>
         </div>
       )}

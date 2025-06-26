@@ -7,11 +7,11 @@ const btnType = {
 };
 
 
-const Button = ({text, type, icon, onClick}) => {
+const Button = ({text, type, icon, onClick, btn}) => {
   return (
-    <div onClick={onClick} className={`${btnType[type]} flex gap-2 tracking-wide font-sans hover:scale-95 cursor-pointer font-semibold transition-all duration-200 justify-center items-center `}>
+    <button type={type} onClick={onClick} className={`${btnType[btn]} flex gap-2 tracking-wide font-sans hover:scale-95 cursor-pointer font-semibold transition-all duration-200 justify-center items-center `}>
         {text} {icon}
-    </div>
+    </button>
   )
 }
 

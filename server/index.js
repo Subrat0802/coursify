@@ -5,6 +5,7 @@ require("dotenv").config();
 const authRoutes = require("./routes/auth");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const categoryRouter = require("./routes/category");
 
 dbconnect.connect();
 
@@ -17,6 +18,7 @@ app.use(
     })
 )
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/category", categoryRouter)
 
 const PORT = process.env.PORT || 4000;
 

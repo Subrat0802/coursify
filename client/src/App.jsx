@@ -4,9 +4,14 @@ import Header from "./components/common/Header";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
-import Dasboard from "./pages/Dasboard";
+import Dasboard from "./pages/DasboardLayout";
 import Cookies from "js-cookie";
 import ProtectedRoute from "./components/auth/ProtectedROute";
+import MyProfile from "./components/dashboard/MyProfile";
+import DasboardLayout from "./pages/DasboardLayout";
+import Dashboard from "./components/dashboard/Dashboard";
+import MyCourses from "./components/dashboard/MyCourses";
+import Settings from "./components/dashboard/Settings";
 function App() {
   return (
     <div className="min-h-[100vh] bg-[#0f0f0f]">
@@ -19,10 +24,15 @@ function App() {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dasboard />
+              <DasboardLayout />
             </ProtectedRoute>
           }
-        />
+        >
+          <Route index element={<Dashboard />} />
+          <Route path="profile" element={<MyProfile />} />
+          <Route path="mycourses" element={<MyCourses />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
       </Routes>
     </div>
   );
