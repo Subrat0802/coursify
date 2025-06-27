@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,8 @@ import { getCategory } from "../../services/operations/categoryApi";
 import { setCategory } from "../../slices/categorySlice";
 
 const Header = () => {
+  const location = useLocation();
+  // console.log("Tab:", location);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token);
@@ -32,11 +34,14 @@ const Header = () => {
     fetchCat();
   }, []);
 
-
   const category = useSelector((state) => state.category.categories);
 
   return (
-    <div className="w-full fixed top-0 z-10 h-[4rem] text-white font-sans py-3 border-b border-white/10">
+    <div
+      className={`w-full fixed top-0 z-10 h-[4rem] text-white font-sans py-3 ${
+        location.pathname === "/" ? "" : "bg-[#131313]"
+      }`}
+    >
       <div className="flex max-w-7xl mx-auto items-center h-full justify-between ">
         <div>
           <Link to={"/"}>
@@ -48,13 +53,16 @@ const Header = () => {
             <li className="cursor-pointer">Home</li>
 
             <div className="relative group flex flex-col items-center">
-
               <div className="bg-[#131212] rounded-lg w-36 absolute hidden group-hover:block p-2 mt-6 mr-2 z-10">
-                {
-                  category && category.map((el) => (
-                    <p className="pl-2 pr-5  hover:scale-95 transition-all duration-200 py-3 hover:bg-gradient-to-tr from-indigo-900 via-purple-900 to-green-800 border-white/10 w-full rounded-lg cursor-pointer "  key={el._id}>{el.name}</p>
-                  ))
-                }
+                {category &&
+                  category.map((el) => (
+                    <p
+                      className="pl-2 pr-5  hover:scale-95 transition-all duration-200 py-3 hover:bg-gradient-to-tr from-indigo-900 via-purple-900 to-green-800 border-white/10 w-full rounded-lg cursor-pointer "
+                      key={el._id}
+                    >
+                      {el.name}
+                    </p>
+                  ))}
               </div>
 
               <li className="flex gap-2 cursor-pointer justify-center items-center">

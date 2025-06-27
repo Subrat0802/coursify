@@ -28,7 +28,7 @@ export const sideBarItem = [
         path:"/dashboard/settings"
     },
     {
-        id: 5,
+        id: 6,
         title:"Log Out",
         icon: "",
         account:"Instructor"

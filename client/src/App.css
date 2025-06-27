@@ -57,6 +57,10 @@
     --chart-5: 340 75% 55%
   }
 }
+body {
+  background-color: #0f0f0f;
+  color: white;
+}
 
 @layer base {
   * {

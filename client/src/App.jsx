@@ -12,6 +12,7 @@ import DasboardLayout from "./pages/DasboardLayout";
 import Dashboard from "./components/dashboard/Dashboard";
 import MyCourses from "./components/dashboard/MyCourses";
 import Settings from "./components/dashboard/Settings";
+import CreateCourse from "./components/dashboard/CreateCourse";
 function App() {
   return (
     <div className="min-h-[100vh] bg-[#0f0f0f]">
@@ -32,6 +33,7 @@ function App() {
           <Route path="profile" element={<MyProfile />} />
           <Route path="mycourses" element={<MyCourses />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="createCourse" element={<CreateCourse />} />
         </Route>
       </Routes>
     </div>

@@ -88,9 +88,9 @@ export const getUser = async () => {
       console.log("RESSSSSSSSSSSS....", response);
       return response.data.data;
     } catch (error) {
-      toast.error(error.response?.data?.message || "Something went wrong");
+      // toast.error(error.response?.data?.message || "Something went wrong");
       console.error("ERROR while get user", error);
-      return null;
+      return error;
     }
 };
 
