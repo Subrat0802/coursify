@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const InstructorMyCourses = ({ userData }) => {
 
-  console.log("courses", userData.courses);
   return (
     <div className="w-full  min-h-[40vh] p-5 mt-10 bg-[#131313] rounded-lg">
       

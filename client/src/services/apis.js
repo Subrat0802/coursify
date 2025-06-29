@@ -11,3 +11,8 @@ export const categoryEndpoints = {
     CREATE_CATEGORY_API: BASE_URL + "/category/createCategory",
     GET_ALL_CATEGORY_API: BASE_URL + "/category/getAllCategory" 
 }
+
+
+export const courseEndpoints = {
+    CREATE_COURSE_API: BASE_URL + "/course/createCourse", 
+}

@@ -12,7 +12,7 @@ exports.isUser = async (req, res, next) => {
       });
     }
     const decode = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("Token verify", decode);
+    // console.log("Token verify", decode);
     req.user = decode;
 
     next();
