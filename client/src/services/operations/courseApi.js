@@ -1,7 +1,7 @@
 import { apiConnector } from "../apiConnector";
 import { courseEndpoints } from "../apis";
 
-const { CREATE_COURSE_API } = courseEndpoints;
+const { CREATE_COURSE_API, CREATE_SECTION_API } = courseEndpoints;
 
 export const createCourse = async (
   title,
@@ -22,9 +22,20 @@ export const createCourse = async (
     const response = await apiConnector("POST", CREATE_COURSE_API, formData, {
       "Content-Type": "multipart/form-data" 
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
+
+
+export const createSection = async (sectionName, courseId) => {
+  try{
+    const response = await apiConnector("POST", CREATE_SECTION_API, {sectionName, courseId});
+    console.log("Section Created", response);
+    return response;
+  }catch(error){
+    console.log(error);
+  }
+}

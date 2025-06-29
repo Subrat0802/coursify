@@ -12,7 +12,8 @@ import DasboardLayout from "./pages/DasboardLayout";
 import Dashboard from "./components/dashboard/Dashboard";
 import MyCourses from "./components/dashboard/MyCourses";
 import Settings from "./components/dashboard/Settings";
-import CreateCourse from "./components/dashboard/CreateCourse";
+import CreateCourse from "./components/dashboard/myCoursesComp/CreateCourse";
+import UserCourses from "./components/dashboard/myCoursesComp/UserCourses";
 function App() {
   return (
     <div className="min-h-[100vh] bg-[#0f0f0f]">
@@ -31,9 +32,16 @@ function App() {
         >
           <Route index element={<Dashboard />} />
           <Route path="profile" element={<MyProfile />} />
-          <Route path="mycourses" element={<MyCourses />} />
+          <Route 
+            path="mycourses" 
+            element={
+                <MyCourses />
+              }
+          >
+              <Route index element={<UserCourses />}/>
+              <Route path="createcourse" element={<CreateCourse />}/>
+          </Route>
           <Route path="settings" element={<Settings />} />
-          <Route path="createCourse" element={<CreateCourse />} />
         </Route>
       </Routes>
     </div>

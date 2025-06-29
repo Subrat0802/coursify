@@ -157,9 +157,27 @@ exports.getUser = async (req, res) => {
       });
     }
 
-    const checkUser = await User.findById({_id:id})
-      .populate("additionalDetails")
-      .exec();
+    // const checkUser = await User.findById(id)
+    //   .populate("additionalDetails")
+    //   .populate("courses", {
+    //     populate:{
+    //       path:"courseContent"
+    //     }
+    //   })
+    //   .exec();
+
+
+    const checkUser = await User.findById(id)
+  .populate("additionalDetails")
+  .populate({
+    path: "courses",
+    populate: {
+      path: "courseContent", // This will populate courseContent inside each course
+    },
+  })
+  .exec();
+
+
     if (!checkUser) {
       return res.status(409).json({
         message: "No user found with this user id",

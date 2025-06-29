@@ -3,6 +3,7 @@ const Course = require("../models/Course");
 const mongoose = require("mongoose");
 const { uploadImageToCloudinary } = require("../utils/imageUpload");
 const Section = require("../models/Section");
+const User = require("../models/User");
 require("dotenv").config();
 
 exports.createCourse = async (req, res) => {
@@ -53,6 +54,8 @@ exports.createCourse = async (req, res) => {
       });
     }
 
+    const addCourseToUserCoursesSection = await User.findByIdAndUpdate(id, {$push: {courses: response._id}}, {new:true});
+
     return res.status(200).json({
       message: "Course created successfully",
       data: response,
@@ -72,8 +75,10 @@ exports.createSection = async (req, res) => {
     const { id } = req.user;
     const { sectionName, courseId } = req.body;
 
+    console.log("sectionName", sectionName);
+
     if (!sectionName) {
-      return res.statsu(408).json({
+      return res.status(408).json({
         message: "Section name is required",
         success: false,
       });
