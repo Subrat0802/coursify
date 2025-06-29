@@ -2,14 +2,13 @@ const Category = require("../models/Category");
 const Course = require("../models/Course");
 const mongoose = require("mongoose");
 const { uploadImageToCloudinary } = require("../utils/imageUpload");
+const Section = require("../models/Section");
 require("dotenv").config();
 
 exports.createCourse = async (req, res) => {
   try {
     const { id } = req.user;
     const { title, description, whatYouWillLearn, price, category } = req.body;
-
-    console.log(title, description, whatYouWillLearn, price, category);
 
     const thumbnail = req.files.thumbnailImage;
 
@@ -56,6 +55,61 @@ exports.createCourse = async (req, res) => {
 
     return res.status(200).json({
       message: "Course created successfully",
+      data: response,
+      success: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Server error while creating course part 1",
+      success: false,
+      error: error.message || "Unknown error",
+    });
+  }
+};
+
+exports.createSection = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const { sectionName, courseId } = req.body;
+
+    if (!sectionName) {
+      return res.statsu(408).json({
+        message: "Section name is required",
+        success: false,
+      });
+    }
+
+    const checkCourse = await Course.findById(courseId);
+
+    if(!checkCourse) {
+      return res.status(409).json({
+        message:"Invalid Course id",
+        success: false
+      })
+    }
+
+    const response = await Section.create({sectionName});
+
+    if (!response) {
+      return res.status(404).json({
+        message: "Error while creating section",
+        success: false,
+      });
+    }
+
+    checkCourse.courseContent.push(response._id);
+
+    const saveCourse = await checkCourse.save();
+
+
+    // const addSectioninCourse = await Course.findByIdAndUpdate(
+    //   courseId,
+    //   { $push: { courseContent: response._id } },
+    //   { new: true }
+    // );
+
+    return res.status(200).json({
+      message: "Section is created",
       data: response,
       success: true,
     });
