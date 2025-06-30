@@ -11,6 +11,9 @@ import { getCategory } from "../../services/operations/categoryApi";
 import { setCategory } from "../../slices/categorySlice";
 
 const Header = () => {
+
+
+
   const location = useLocation();
   // console.log("Tab:", location);
   const dispatch = useDispatch();
@@ -24,6 +27,7 @@ const Header = () => {
     navigate("/");
     toast.success("Logout Successfully");
   };
+  
 
   useEffect(() => {
     const fetchCat = async () => {

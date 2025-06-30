@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.10.0",
+    "gsap": "^3.13.0",
     "js-cookie": "^3.0.5",
     "lucide": "^0.525.0",
     "ogl": "^1.0.11",

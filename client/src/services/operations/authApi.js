@@ -94,4 +94,28 @@ export const getUser = async () => {
     }
 };
 
+// Thunk to fetch user and update Redux
+export const getUserThunk = () => {
+  return async (dispatch) => {
+    dispatch(setLoading(true));
+    try {
+      const response = await apiConnector("GET", GETUSER_API);
+      dispatch(setUserData(response.data.data));
+    } catch (error) {
+      console.error("ERROR while get user", error);
+      dispatch(setUserData(null));
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
+};
+
+export const userDetals = async () => {
+  try{
+    const response = await apiConnector("GET", GETUSER_API);
+    return response.data.data;
+  }catch(error){
+    console.log("error", error);
+  }
+}
 

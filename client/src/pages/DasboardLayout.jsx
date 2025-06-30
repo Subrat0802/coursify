@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import { getUser } from "../services/operations/authApi";
+import { getUserThunk } from "../services/operations/authApi";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../slices/authSlice";
 import Sidebar from "../components/dashboard/Sidebar";
@@ -9,12 +9,7 @@ import { Outlet } from "react-router-dom";
 const DasboardLayout = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    const fetchUser = async () => {
-      const data = await getUser();
-      dispatch(setUserData(data));
-    };
-
-    fetchUser();
+    dispatch(getUserThunk());
   }, []);
 
   

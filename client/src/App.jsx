@@ -14,14 +14,16 @@ import MyCourses from "./components/dashboard/MyCourses";
 import Settings from "./components/dashboard/Settings";
 import CreateCourse from "./components/dashboard/myCoursesComp/CreateCourse";
 import UserCourses from "./components/dashboard/myCoursesComp/UserCourses";
+import OpenRoute from "./components/auth/OpenRoute";
+
 function App() {
   return (
     <div className="min-h-[100vh] bg-[#0f0f0f]">
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<OpenRoute><Signup /></OpenRoute>} />
+        <Route path="/signin" element={<OpenRoute><Signin /></OpenRoute>} />
         <Route
           path="/dashboard"
           element={

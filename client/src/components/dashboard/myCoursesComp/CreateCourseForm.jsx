@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 // import { Check } from 'lucide-react';
 import { FaCheck, FaPlus } from "react-icons/fa6";
 import { setCourseId } from "../../../slices/courseSlice";
+import { setUserData } from '../../../slices/authSlice';
+import { getUser } from '../../../services/operations/authApi';
 
 const CreateCourseForm = () => {
   const dispatch = useDispatch();
@@ -44,6 +46,11 @@ const CreateCourseForm = () => {
   };
 
   const handleSubmit = async () => {
+    // Basic validation
+    if (!title || !description || !whatYouWillLearn || !price || !thumbnailImage || !category) {
+      toast.error("Please fill all required fields and select a thumbnail image.");
+      return;
+    }
     const response = await createCourse(
       title,
       description,
@@ -57,7 +64,7 @@ const CreateCourseForm = () => {
       dispatch(setCourseId(response.data.data));
       setFormState(2);
     } else {
-      toast.error(response.response.data.message);
+      toast.error(response.response?.data?.message || "Server error. Try again.");
     }
   };
 
@@ -72,6 +79,11 @@ const CreateCourseForm = () => {
       try{
         const response = await createSection(sectionName, courseId)
         console.log("Section creation phase", response);
+        // Fetch updated user data and update Redux
+        const updatedUserData = await getUser();
+        dispatch(setUserData(updatedUserData));
+        // Optionally, clear the section input
+        setSectionName("");
       }catch(error){
         console.log(error);
       }
@@ -199,8 +211,7 @@ const CreateCourseForm = () => {
               <span className=" text-white text-sm">
                 {courseData.thumbnailImage ? (
                   <div className="flex gap-4">
-                    {" "}
-                    {courseData.thumbnailImage.name}{" "}
+                    {courseData.thumbnailImage.name} {" "}
                     <p
                       type="button"
                       onClick={() =>
@@ -212,7 +223,7 @@ const CreateCourseForm = () => {
                       className="text-red-800 hover:text-red-600"
                     >
                       del
-                    </p>{" "}
+                    </p>
                   </div>
                 ) : (
                   "No file chosen"
@@ -223,7 +234,7 @@ const CreateCourseForm = () => {
                 type="file"
                 name="thumbnailImage"
                 accept="image/*"
-                onChange={(e) => handleOnChange(e)}
+                onChange={handleOnChange}
                 className="hidden"
               />
             </div>
