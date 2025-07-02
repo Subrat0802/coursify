@@ -3,7 +3,8 @@ import React from 'react'
 const btnType = {
   primary: "rounded-md px-6 py-2 bg-indigo-700  hover:bg-indigo-800 text-white",
   secondary: "rounded-md px-6 py-2 bg-emerald-700  hover:bg-emerald-800 text-white",
-  teritory:"border rounded-md border-white/30  py-2 px-4"
+  teritory:"border rounded-md border-white/30  py-2 px-4",
+  forth: "rounded-md px-6 py-2 bg-emerald-700  hover:bg-emerald-800 text-white"
 };
 
 

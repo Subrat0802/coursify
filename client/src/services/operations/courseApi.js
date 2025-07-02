@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
 import { courseEndpoints } from "../apis";
 
@@ -19,9 +20,7 @@ export const createCourse = async (
     formData.append("price", price)
     formData.append("thumbnailImage", thumbnailImage)
     formData.append("category", category)
-    const response = await apiConnector("POST", CREATE_COURSE_API, formData, {
-      "Content-Type": "multipart/form-data" 
-    });
+    const response = await apiConnector("POST", CREATE_COURSE_API, formData);
     return response;
   } catch (error) {
     console.log(error);
@@ -42,21 +41,29 @@ export const createSection = async (sectionName, courseId) => {
 
 export const createSubSection = async (title, description, sectionId, videoUrl) => {
   console.log("title, description, sectionId, videoUrl", title, description, sectionId, videoUrl);
-  
+    // const toastId = toast.loading("Loading..");
     try{
       const formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
       formData.append("sectionId", sectionId);
       formData.append("videoUrl", videoUrl);
-      const response = await apiConnector("POST", CREATE_SUB_SECTION_API, formData, {
-      "Content-Type": "multipart/form-data" 
-    });
 
-    console.log("RESPONSE SUB SECTION", response);
-    return response;
+      const response = await apiConnector("POST", CREATE_SUB_SECTION_API, formData);
+
+      if(!response.data.success) {
+        throw new Error(response.data.message); 
+      }
+
+      // toast.dismiss(toastId);
+
+      toast.success("Video uploaded successfully");
+
+      console.log("RESPONSE SUB SECTION", response);
+      return response;
     }catch(error){
       console.log(error);
+      toast.error("Failed to upload video");
     }
   
 }

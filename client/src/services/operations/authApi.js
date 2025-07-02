@@ -32,7 +32,6 @@ export const signup = (
       }
 
       dispatch(setUserData(response.data.response));
-      toast.dismiss(toastId);
 
       navigate("/signin"); // optionally pass path like navigate("/dashboard")
       toast.success(response.data.message);
@@ -41,6 +40,7 @@ export const signup = (
       alert(error.response.data.message);
     } finally {
       dispatch(setLoading(false));
+      toast.dismiss(toastId);
     }
   };
 };
