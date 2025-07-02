@@ -172,7 +172,10 @@ exports.getUser = async (req, res) => {
   .populate({
     path: "courses",
     populate: {
-      path: "courseContent", // This will populate courseContent inside each course
+      path: "courseContent",
+      populate:{
+        path: "subSection"
+      } // This will populate courseContent inside each course
     },
   })
   .exec();

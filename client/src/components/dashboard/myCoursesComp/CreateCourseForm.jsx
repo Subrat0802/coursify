@@ -3,13 +3,11 @@ import InputTag from "../../ui/InputTag";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../ui/Button";
 import { useState } from "react";
-import { createCourse, createSection } from "../../../services/operations/courseApi";
 import toast from "react-hot-toast";
-// import { Check } from 'lucide-react';
 import { FaCheck, FaPlus } from "react-icons/fa6";
 import { setCourseId } from "../../../slices/courseSlice";
-import { setUserData } from '../../../slices/authSlice';
-import { getUser } from '../../../services/operations/authApi';
+import CreateSectionSubSection from "./CreateSectionSubSection";
+import { createCourse } from "../../../services/operations/courseApi";
 
 const CreateCourseForm = () => {
   const dispatch = useDispatch();
@@ -68,26 +66,7 @@ const CreateCourseForm = () => {
     }
   };
 
-  // COURSE PART TWO FORM
-  const [sectionName, setSectionName] = useState("");
-  console.log("sectionName", sectionName)
-  const courseId = useSelector((state) => state.course.courseId);
-  const handleChange = (e) => {
-    setSectionName(e.target.value);
-  }
-  const handleCourseBuilder = async () => {
-      try{
-        const response = await createSection(sectionName, courseId)
-        console.log("Section creation phase", response);
-        // Fetch updated user data and update Redux
-        const updatedUserData = await getUser();
-        dispatch(setUserData(updatedUserData));
-        // Optionally, clear the section input
-        setSectionName("");
-      }catch(error){
-        console.log(error);
-      }
-  };
+ 
   return (
     <div>
       {/* progress bar  */}
@@ -250,19 +229,7 @@ const CreateCourseForm = () => {
       )}
 
       {formState === 2 && (
-        <div className="bg-[#131313] p-5 border border-white/10 rounded-lg mt-7">
-          <p>Course Builder</p>
-          <div className="mt-8">
-            <InputTag className={"w-full"} placeholder={"Add Section Name"} onChange={(e) => handleChange(e)}/>
-            <Button
-              icon={<FaPlus />}
-              classStyle={"mt-3"}
-              text={"Create Section"}
-              btn={"teritory"}
-              onClick={handleCourseBuilder}
-            />
-          </div>
-        </div>
+        <CreateSectionSubSection />
       )}
     </div>
   );
