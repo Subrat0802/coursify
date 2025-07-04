@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FaVideo } from "react-icons/fa6";
 
 const ShowCourseLectures = ({ matchCourse }) => {
+
   const [openSectionId, setOpenSectionId] = useState(null);
 
   const handleClick = (sectionId) => {
