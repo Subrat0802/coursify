@@ -7,7 +7,7 @@ const MyProfile = () => {
   console.log("userData profile", userData);
   return (
     <div className=" w-full min-h-[91vh] p-10 flex flex-col font-sans">
-      <div className="w-full flex bg-[#131313] rounded-lg p-10 shadow-xl">
+      <div className="w-full flex bg-[#1A1A1D] rounded-lg p-10 shadow-xl">
         <div>
           <img className="rounded-full" width={150} src={userData.image} />
         </div>
@@ -24,7 +24,7 @@ const MyProfile = () => {
           <Button text={"Edit"} btn={"primary"}/>
         </div>
       </div>
-      <div className="p-10 w-full rounded-lg mt-10 flex justify-between bg-[#131313] shadow-lg">
+      <div className="p-10 w-full rounded-lg mt-10 flex justify-between bg-[#1A1A1D] shadow-lg">
         
         <div>
           <p className="text-xl font-semibold">Personal Details:</p>

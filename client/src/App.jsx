@@ -15,6 +15,7 @@ import Settings from "./components/dashboard/Settings";
 import CreateCourse from "./components/dashboard/myCoursesComp/CreateCourse";
 import UserCourses from "./components/dashboard/myCoursesComp/UserCourses";
 import OpenRoute from "./components/auth/OpenRoute";
+import ShowCourse from "./components/dashboard/myCoursesComp/ShowCourse";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           >
               <Route index element={<UserCourses />}/>
               <Route path="createcourse" element={<CreateCourse />}/>
+              <Route path=":id" element={<ShowCourse />}/>
           </Route>
           <Route path="settings" element={<Settings />} />
         </Route>

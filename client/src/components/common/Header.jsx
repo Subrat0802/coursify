@@ -11,9 +11,6 @@ import { getCategory } from "../../services/operations/categoryApi";
 import { setCategory } from "../../slices/categorySlice";
 
 const Header = () => {
-
-
-
   const location = useLocation();
   // console.log("Tab:", location);
   const dispatch = useDispatch();
@@ -27,7 +24,6 @@ const Header = () => {
     navigate("/");
     toast.success("Logout Successfully");
   };
-  
 
   useEffect(() => {
     const fetchCat = async () => {
@@ -57,11 +53,13 @@ const Header = () => {
             <li className="cursor-pointer">Home</li>
 
             <div className="relative group flex flex-col items-center">
-              <div className="bg-[#131212] rounded-lg w-36 absolute hidden group-hover:block p-2 mt-6 mr-2 z-10">
+              <div className="bg-[#131212] rounded-lg w-36 absolute hidden group-hover:block 
+                                p-2 mt-6 mr-2 z-10">
                 {category &&
                   category.map((el) => (
                     <p
-                      className="pl-2 pr-5  hover:scale-95 transition-all duration-200 py-3 hover:bg-gradient-to-tr from-indigo-900 via-purple-900 to-green-800 border-white/10 w-full rounded-lg cursor-pointer "
+                      className="pl-2 pr-5  hover:scale-95 transition-all duration-200 py-3   
+                                  hover:bg-gradient-to-tr from-indigo-900 via-purple-900 to-green-800 border-white/10 w-full rounded-lg cursor-pointer "
                       key={el._id}
                     >
                       {el.name}
@@ -83,11 +81,17 @@ const Header = () => {
         </div>
         {token && user ? (
           <div className="flex gap-3 justify-center items-center">
-            <p className="cursor-pointer" onClick={handleLogOut}>
+            {/* <p className="cursor-pointer" onClick={handleLogOut}>
               logout
-            </p>
+            </p> */}
             <Link to="/dashboard">
-              <img className="w-8 rounded-full" src={user.image} />
+              <div className="relative flex flex-col group items-center">
+                <img className="w-8 rounded-full" src={user.image} />
+                <div className="absolute hidden top-8 transition-all duration-500 group-hover:block text-white/70 right-[2px] bg-[#222222] p-3 rounded-lg">
+                  <p className="border-b transition-all duration-200 border-white/50 hover:text-yellow-400 hover:border-yellow-400 text-white/70  py-2">Dashboard</p>
+                  <p onClick={handleLogOut} className="border-b transition-all duration-200 border-white/50 hover:text-yellow-400 hover:border-yellow-400 text-white/70  py-2">Logout</p>
+                </div>
+              </div>
             </Link>
           </div>
         ) : (

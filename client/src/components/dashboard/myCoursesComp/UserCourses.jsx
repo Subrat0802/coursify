@@ -7,7 +7,7 @@ const UserCourses = () => {
   const userData = useSelector((state) => state.auth.userData);
   return (
     <div>
-      <p className="text-4xl text-white/60 font-bold">
+      <p className="text-3xl font-semibold text-white mb-4">
         Hello {userData.accountType}
       </p>
       {userData.accountType === "Instructor" ? (

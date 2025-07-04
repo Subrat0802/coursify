@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { getUserThunk } from "../services/operations/authApi";
 import { useDispatch } from "react-redux";
-import { setUserData } from "../slices/authSlice";
+// import { setUserData } from "../slices/authSlice";
 import Sidebar from "../components/dashboard/Sidebar";
 import { Outlet } from "react-router-dom";
 

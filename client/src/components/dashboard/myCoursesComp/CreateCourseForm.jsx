@@ -7,6 +7,7 @@ import { FaCheck } from "react-icons/fa6";
 import { setCourseId } from "../../../slices/courseSlice";
 import CreateSectionSubSection from "./CreateSectionSubSection";
 import { createCourse } from "../../../services/operations/courseApi";
+import PublishCourseSection from "./PublishCourseSection";
 
 const CreateCourseForm = () => {
 
@@ -220,7 +221,9 @@ const CreateCourseForm = () => {
       )}
 
       {/* Step 2: Section/Subsection */}
-      {formState === 2 && <CreateSectionSubSection setFormState formState/>}
+      {formState === 2 && <CreateSectionSubSection setFormState={setFormState}/>}
+
+      {formState === 3 && <PublishCourseSection setFormState={setFormState}/>}
     </div>
   );
 };

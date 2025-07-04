@@ -11,7 +11,7 @@ import { FaPlus, FaVideo } from "react-icons/fa6";
 import Button from "../../ui/Button";
 import toast from "react-hot-toast";
 
-const CreateSectionSubSection = () => {
+const CreateSectionSubSection = ({setFormState}) => {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const CreateSectionSubSection = () => {
   };
   const handleCourseBuilder = async () => {
     setLoading(true);
-    loading ? toast.loading("Creating Course") : "";
+    const toastId = toast.loading("Creating Course");
     try {
       const response = await createSection(sectionName, courseId);
       setSectionName("");
@@ -34,6 +34,8 @@ const CreateSectionSubSection = () => {
       setLoading(false);
     } catch (error) {
       console.log(error);
+    }finally {
+      !loading && toast.dismiss(toastId);
     }
   };
 
@@ -74,11 +76,11 @@ const CreateSectionSubSection = () => {
       console.log("FRONT PAGE subsection creation", response);
       const useDataUpdated = await getUser();
       dispatch(setUserData(useDataUpdated));
-      setSubSectionForm({
+      setSubSectionForm( () => ({
         title: "",
         description: "",
         videoUrl: null,
-      })
+      }))
       setLoading(false);
     } catch (error) {
       console.log("FRONT PAGE subsection creation error", error);
@@ -87,6 +89,11 @@ const CreateSectionSubSection = () => {
       setLoading(false);
     }
   };
+
+  const handleNext = () => {
+    console.log("HELLO HANDLW NEXT")
+    setFormState(3);
+  }
 
   return (
     <div className="bg-[#131313] p-6 border border-white/10 rounded-2xl mt-10 shadow-md">
@@ -180,7 +187,7 @@ const CreateSectionSubSection = () => {
             btn="teritory"
             onClick={handleCourseBuilder}
           />
-          <Button text="Next" btn="secondary" classStyle="py-1" />
+          <Button text="Next" btn="secondary" classStyle="py-1" onClick={handleNext}/>
         </div>
       </div>
     </div>

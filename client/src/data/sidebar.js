@@ -1,3 +1,5 @@
+import { FaBookAtlas } from "react-icons/fa6";
+
 export const sideBarItem = [
     {
         id: 1,
