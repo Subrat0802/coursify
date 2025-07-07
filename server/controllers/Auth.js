@@ -12,6 +12,7 @@ exports.signup = async (req, res) => {
       firstname,
       lastname,
       email,
+      number,
       password,
       confirmPassword,
       accountType,
@@ -22,6 +23,7 @@ exports.signup = async (req, res) => {
       !firstname ||
       !lastname ||
       !email ||
+      !number ||
       !password ||
       !confirmPassword ||
       !accountType
@@ -53,13 +55,14 @@ exports.signup = async (req, res) => {
       gender: null,
       dateOfBirth: null,
       about: null,
-      phoneNumber: null,
+      phoneNumber: number,
     });
 
     const response = await User.create({
       firstname,
       lastname,
       email,
+      number,
       password: hashedPassword,
       accountType,
       additionalDetails: addProfileData._id,

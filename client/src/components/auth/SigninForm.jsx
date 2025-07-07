@@ -2,7 +2,7 @@ import InputTag from "../ui/InputTag";
 import Button from "../ui/Button";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signin } from "../../services/operations/authApi";
 
 const SigninForm = () => {
@@ -33,7 +33,7 @@ const SigninForm = () => {
       <form
         onSubmit={handleSubmit}
         autocomplete="off"
-        className="flex flex-col gap-4 w-[80%]"
+        className="flex flex-col gap-4 md:w-[80%]"
       >
         <InputTag
           placeholder={"Email Address"}
@@ -51,6 +51,9 @@ const SigninForm = () => {
         />
         {/* <input type="submit" text="login" /> */}
         <Button onClick={handleSubmit} text={"Sign In"} btn={"primary"} type={"submit"} />
+        <div className="text-center">
+              <Link to={"/signup"}><p className="group cursor-pointer">Don't have account? <span className="group-hover:text-blue-900">Signup</span></p></Link>
+            </div>
       </form>
     </div>
   );

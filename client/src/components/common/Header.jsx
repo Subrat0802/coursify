@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { getCategory } from "../../services/operations/categoryApi";
 import { setCategory } from "../../slices/categorySlice";
 import { Menu } from "lucide-react";
+import { getAllCourses } from "../../services/operations/courseApi";
 
 const Header = () => {
   const location = useLocation();
@@ -31,6 +32,7 @@ const Header = () => {
       const res = await getCategory();
       console.log("RESSS CATEGORY FE", res);
       dispatch(setCategory(res.data.data));
+      dispatch(getAllCourses());
     };
     fetchCat();
   }, []);
@@ -53,10 +55,10 @@ const Header = () => {
           <ul className="flex gap-8 font-semibold ">
             <li className="cursor-pointer">Home</li>
 
-            <div className="relative group flex flex-col items-center">
+            <div className="relative z-20 group flex flex-col items-center">
               <div
-                className="bg-[#131212] rounded-lg w-36 absolute hidden group-hover:block 
-                                p-2 mt-6 mr-2 z-10"
+                className="bg-[#131212]  rounded-lg w-36 absolute hidden group-hover:block 
+                                p-2 mt-6 mr-2 z-20"
               >
                 {category &&
                   category.map((el) => (
@@ -80,7 +82,7 @@ const Header = () => {
             </div>
 
             <li className="cursor-pointer">About</li>
-            <li className="cursor-pointer">Contact us</li>
+            <Link to={"/allcourses"}><li className="cursor-pointer">All Courses</li></Link>
           </ul>
         </div>
 
@@ -110,10 +112,10 @@ const Header = () => {
           ) : (
             <div className="flex justify-center items-center gap-5">
               <Link to={"/signin"}>
-                <Button text={"Login"} btn={"teritory"} />
+                <Button classStyle={"text-sm px-1 md:text-lg"} text={"Login"} btn={"teritory"} />
               </Link>
               <Link to={"/signup"}>
-                <Button text={"Signup"} btn={"teritory"} />
+                <Button classStyle={"text-sm px-1 md:text-lg "} text={"Signup"} btn={"teritory"} />
               </Link>
             </div>
           )}

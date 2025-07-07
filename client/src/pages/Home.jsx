@@ -31,7 +31,7 @@ const codeblockHTML = `<!doctype html>
 
 const Home = () => {
   return (
-    <div className='w-full '>
+    <div className='w-full overflow-x-hidden'>
       
         <SectionOne />
         <Sectiontwo rev="flex-row" codeblock={codeblockHTML} desc={"Unlock your coding potential with our online courses."} subDesc={"Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."}/>

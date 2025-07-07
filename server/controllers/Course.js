@@ -144,14 +144,14 @@ exports.createSubSection = async (req, res) => {
       });
     }
 
-    const secId = new mongoose.Types.ObjectId(sectionId)
+    const secId = new mongoose.Types.ObjectId(sectionId);
 
     const checkSection = await Section.findById(secId).populate("subSection");
-    if(!checkSection) {
+    if (!checkSection) {
       return res.status(409).json({
-        message:"Section is not valid, something went wrong. try again",
-        success:false
-      })
+        message: "Section is not valid, something went wrong. try again",
+        success: false,
+      });
     }
 
     const video = await uploadImageToCloudinary(
@@ -163,7 +163,7 @@ exports.createSubSection = async (req, res) => {
 
     const response = await SubSection.create({
       title,
-      timeDuration:video.duration,
+      timeDuration: video.duration,
       description,
       videoUrl: video.secure_url,
     });
@@ -189,6 +189,36 @@ exports.createSubSection = async (req, res) => {
       message: "Server error while creating course part 2",
       success: false,
       error: error.message || "Unknown error",
+    });
+  }
+};
+exports.getAllCourse = async (req, res) => {
+  try {
+    const response = await Course.find()
+      .populate("instructor")
+      .populate("courseContent")
+      .populate("category")
+      .populate("studentEnrolled")
+      .exec();
+
+    if (!response || response.length === 0) {
+      return res.status(404).json({
+        message: "No courses found.",
+        success: false,
+      });
+    }
+
+    return res.status(200).json({
+      message: "All courses fetched successfully.",
+      success: true,
+      data: response, // ✅ Return the actual courses
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      message: "Server error while getting all courses.",
+      success: false,
+      error: error.message,
     });
   }
 };

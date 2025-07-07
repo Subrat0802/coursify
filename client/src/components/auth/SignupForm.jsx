@@ -3,7 +3,7 @@ import InputTag from "../ui/InputTag";
 import Button from "../ui/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../services/operations/authApi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ const SignupForm = () => {
     firstname: "",
     lastname: "",
     email: "",
+    number:"",
     password: "",
     confirmPassword: "",
   });
@@ -31,7 +32,7 @@ const SignupForm = () => {
     }));
   };
 
-  const { firstname, lastname, email, password, confirmPassword } = userData;
+  const { firstname, lastname, email, number, password, confirmPassword } = userData;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,6 +42,7 @@ const SignupForm = () => {
         firstname,
         lastname,
         email,
+        number,
         password,
         confirmPassword,
         navigate
@@ -55,19 +57,20 @@ const SignupForm = () => {
         <p className="p-20">Loading...</p>
       ) : (
         <div className="w-full flex flex-col gap-2">
-          <div className="flex gap-4 mb-4">
+          <div className="flex gap-4 border-b-2 border-white/10 p-1 font-semibold px-1
+           rounded-full mb-4 bg-[#1c1c1c] w-fit ">
             <div
               onClick={(e) => handleSetRole(e)}
-              className={`border cursor-pointer border-white/10 text-white/70 py-2 px-4 rounded-full ${
-                role == "Instructor" && "bg-gray-900"
+              className={` cursor-pointer  text-white/70 py-2 px-4 rounded-full ${
+                role == "Instructor" && "bg-[#0F0F0F]  border-white/10"
               }`}
             >
               Instructor
             </div>
             <div
               onClick={(e) => handleSetRole(e)}
-              className={`border cursor-pointer border-white/10 text-white/70 py-2 px-4 rounded-full ${
-                role == "Student" && "bg-gray-900"
+              className={`cursor-pointer  text-white/70 py-2 px-4 rounded-full ${
+                role == "Student" && "bg-[#0F0F0F]  flex justify-center items-center"
               }`}
             >
               Student
@@ -76,11 +79,11 @@ const SignupForm = () => {
           <form
             onSubmit={handleSubmit}
             autoComplete="off"
-            className="flex flex-col gap-4 w-[80%]"
+            className="flex flex-col gap-4 md:w-[80%]"
           >
-            <div className="flex justify-between gap-2">
+            <div className="flex justify-between  gap-2">
               <InputTag
-                className="w-[50%]"
+                className="w-[50%]  "
                 placeholder={"First Name"}
                 type={"text"}
                 value={firstname}
@@ -104,11 +107,13 @@ const SignupForm = () => {
               name="email"
               onChange={(e) => handleChange(e)}
             />
-            {/* <InputTag
+            <InputTag
               placeholder={"Phone Number"}
               type={"text"}
               name="number"
-            /> */}
+              value={number}
+              onChange={(e) => handleChange(e)}
+            />
 
             <div className=" flex justify-between gap-2">
               <InputTag
@@ -130,6 +135,9 @@ const SignupForm = () => {
             </div>
             {/* <input type="submit" text="signup" /> */}
             <Button text={"Sign Up"} type={"submit"} btn={"primary"}/>
+            <div className="text-center">
+              <Link to={"/signin"}><p className="group cursor-pointer">Already have an account? <span className="group-hover:text-blue-800">Signin</span></p></Link>
+            </div>
           </form>
         </div>
       )}

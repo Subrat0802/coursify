@@ -6,13 +6,14 @@ import ShinyText from "../ui/ShinyText";
 
 const Sectiontwo = ({ rev, codeblock, desc, subDesc }) => {
   return (
-    <div className=" w-full flex justify-center py-10">
+    <div className=" w-full flex justify-center pb-10 md:py-10 mb-16 ">
       <div
-        className={`flex ${rev} gap-10  text-white w-full max-w-7xl`}
+        className={`md:flex ${rev} gap-10  text-white w-full max-w-7xl `}
       >
-        <div className="w-full md-w-[50%] flex flex-col justify-between">
+        <div className=" w-full md-w-[50%] mb-14 md:mb-0 px-3 md:px-0 flex flex-col justify-between 
+        text-center md:text-start ">
           <div>
-            <p className="font-bold text-5xl pb-4">{desc}</p>
+            <p className="font-bold  text-2xl md:px-0 px-0 md:text-5xl pb-4">{desc}</p>
             <ShinyText
               text={subDesc}
               disabled={false}
@@ -21,7 +22,7 @@ const Sectiontwo = ({ rev, codeblock, desc, subDesc }) => {
             />
           </div>
 
-          <div className="flex gap-5 pt-10">
+          <div className="flex justify-center items-center md:justify-start gap-5 pt-10">
             <Button
               text={"Try it yourself"}
               btn={"primary"}
@@ -31,9 +32,9 @@ const Sectiontwo = ({ rev, codeblock, desc, subDesc }) => {
           </div>
         </div>
         {/* //"#5227FF", "#7cff67", "#5227FF" */}
-        <div className=" border border-white/10 relative  flex w-full md-w-[50%]">
+        <div className=" border border-white/10 relative text-[13px] flex md:w-full md:text-sm mx-4 md:mx-0">
           <div className="absolute w-[60%] m-16 h-[70%] bg-gradient-to-br from-[#342961] via-[#134d0b] to-[#5227FF] rounded-full blur-3xl"></div>
-          <div className="text-sm flex flex-col   text-yellow-300  w-fit px-1  py-1">
+          <div className=" flex flex-col   text-yellow-300/50  w-fit px-1  py-1">
             <p>1</p>
             <p>2</p>
             <p>3</p>
@@ -49,7 +50,7 @@ const Sectiontwo = ({ rev, codeblock, desc, subDesc }) => {
             <p>13</p>
             <p>14</p>
           </div>
-          <div className="text-sm font-bold text-yellow-500 flex flex-col z-20   border-white/10 w-fit px-1 gap-1 py-1">
+          <div className=" font-bold text-yellow-500/80 flex flex-col z-20   border-white/10 w-fit px-1 gap-1 py-1">
             <TypeAnimation
               sequence={[codeblock, 10000, ""]}
               repeat={Infinity}

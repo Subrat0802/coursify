@@ -10,6 +10,7 @@ export const signup = (
   firstname,
   lastname,
   email,
+  number,
   password,
   confirmPassword,
   navigate
@@ -23,6 +24,7 @@ export const signup = (
         firstname,
         lastname,
         email,
+        number,
         password,
         confirmPassword,
       });

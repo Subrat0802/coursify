@@ -7,7 +7,7 @@ import Button from "../../ui/Button";
 
 const ShowCourse = () => {
   const { id } = useParams();
-  const course = useSelector((state) => state.auth.userData.courses);
+  const course = useSelector((state) => state.course.allCourses);
 
   const courseData = course.find((el) => el._id === id) || null;
   return (

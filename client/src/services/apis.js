@@ -17,4 +17,5 @@ export const courseEndpoints = {
     CREATE_COURSE_API: BASE_URL + "/course/createCourse", 
     CREATE_SECTION_API: BASE_URL + "/course/createSection",
     CREATE_SUB_SECTION_API: BASE_URL + "/course/createSubSection",
+    GET_ALL_COURSES_SECTION: BASE_URL + "/course/allCourses"
 }
