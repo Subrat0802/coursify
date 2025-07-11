@@ -196,7 +196,12 @@ exports.getAllCourse = async (req, res) => {
   try {
     const response = await Course.find()
       .populate("instructor")
-      .populate("courseContent")
+      .populate({
+        path:"courseContent",
+        populate:{
+          path:"subSection"
+        }
+      })
       .populate("category")
       .populate("studentEnrolled")
       .exec();

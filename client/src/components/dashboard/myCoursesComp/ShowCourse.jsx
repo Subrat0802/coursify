@@ -1,17 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import ShowCourseLectures from "./ShowCourseLectures";
 import { LanguagesIcon, Star, StarIcon, Timer, User } from "lucide-react";
 import Button from "../../ui/Button";
 
 const ShowCourse = () => {
-  const { id } = useParams();
+  const para = useParams();
+  const loca = useLocation();
+  const pathone = loca.pathname.split("/");
+  console.log("LOCA", loca, pathone[2]);
   const course = useSelector((state) => state.course.allCourses);
 
-  const courseData = course.find((el) => el._id === id) || null;
+  const courseData = course.find((el) => el._id === para.id) || null;
   return (
-    <div className="relative">
+    <div className={`${pathone[2] == "show" ? "flex p-10  gap-4 px-36 justify-center " : "relative"}`}>
+      <div className="flex flex-col   w-[] ">
+
       <div className="bg-[#131313] relative py-5 rounded-t-lg">
         <div className="max-w-3xl text-sm  px-5  border-r border-white/10">
           <p className="text-2xl font-bold mb-3 text-white">
@@ -50,12 +55,13 @@ const ShowCourse = () => {
       <div className="max-w-3xl border-white/10 relative rounded-lg">
         <ShowCourseLectures matchCourse={courseData} />
       </div>
+      </div>
 
-      <div className="absolute bg-[#242424] right-8 top-8 w-[30vw] rounded-xl">
-        <img src={courseData.thumbnail} />
+      <div className={`${pathone[2] == "show" ? "max-w-[26rem]  bg-[#242424] right-8 top-8 rounded-xl h-fit" : "absolute bg-[#242424] right-8 top-8 w-[30vw] rounded-xl"}`}>
+        <img className="rounded-t-lg" src={courseData.thumbnail} />
         <div className="p-5 font-sans">
           <p className="text-3xl font-bold">Rs. {courseData.price}</p>
-          <Button text={"Add to Cart"} btn={"secondary"} classStyle={"w-full  text-black mt-2"}/>
+          <Button text={`${pathone[2] == "show" ? "Buy Course" : "Publish"} `} btn={"secondary"} classStyle={"w-full  text-black mt-2"}/>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, Clock, TimerIcon } from "lucide-react";
 import { useState } from "react";
 import { FaVideo } from "react-icons/fa6";
 
@@ -41,7 +41,7 @@ const ShowCourseLectures = ({ matchCourse }) => {
 
             {/* Subsections */}
             {openSectionId === section._id && (
-              <div className="flex flex-col">
+              <div className="flex flex-col cursor-pointer">
                 {section.subSection.length === 0 ? (
                   <div className="text-sm text-white/60 px-5 pb-3">No videos added yet.</div>
                 ) : (
@@ -54,7 +54,8 @@ const ShowCourseLectures = ({ matchCourse }) => {
                         <FaVideo className="text-violet-400" />
                         <span>{lecture.title}</span>
                       </div>
-                      <p className="text-sm text-white/70">{lecture.timeDuration}</p>
+                      <p className="text-sm text-white/70 flex gap-1 justify-center items-center">
+                      {Math.floor(lecture.timeDuration * 10)/10 } <Clock className="w-[15px] h-[15px]"/></p>
                     </div>
                   ))
                 )}
