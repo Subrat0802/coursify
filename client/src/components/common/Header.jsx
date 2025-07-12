@@ -42,7 +42,8 @@ const Header = () => {
   return (
     <div
       className={`w-full fixed top-0 z-10 h-[4rem] text-white font-sans py-3 px-3 md:px-0 ${
-        location.pathname === "/" ? "" : "bg-[#131313]"
+        location.pathname === "/" || location.pathname === "/signin" || 
+        location.pathname === "/signup" ? "" : "bg-[#131313]"
       }`}
     >
       <div className="flex max-w-7xl mx-auto items-center h-full justify-between ">
@@ -57,7 +58,8 @@ const Header = () => {
 
             <div className="relative z-20 group flex flex-col items-center">
               <div
-                className="bg-[#131212]  rounded-lg w-36 absolute hidden group-hover:block 
+                className="bg-[#131212] transition-all duration-500 ease-in-out rounded-lg
+                 w-36 absolute hidden group-hover:block 
                                 p-2 mt-6 mr-2 z-20"
               >
                 {category &&
