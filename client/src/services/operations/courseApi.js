@@ -8,6 +8,7 @@ const {
   CREATE_SECTION_API,
   CREATE_SUB_SECTION_API,
   GET_ALL_COURSES_SECTION,
+  ADD_COURSE_TO_STUDENT
 } = courseEndpoints;
 
 export const createCourse = async (
@@ -100,4 +101,30 @@ export const getAllCourses = () => {
       console.log("ERROR get all course", error);
     }
   };
+};
+
+
+
+
+
+export const studentBuyCourse = async (courseId) => {
+  try {
+    const response = await apiConnector("POST", ADD_COURSE_TO_STUDENT, { courseId });
+    console.log("RESPONSE BUY COURSE", response);
+
+    if (!response?.data?.success) {
+      throw new Error(response?.data?.message || "Unknown error");
+    }
+
+    toast.success(response.data.message);
+    return response.data;
+  } catch (error) {
+    console.error("ERROR BUY COURSE", error);
+
+    const errorMessage =
+      error?.response?.data?.message || error.message || "Something went wrong";
+
+    toast.error(errorMessage);
+    throw new Error(errorMessage); // re-throw if you want to handle it further upstream
+  }
 };

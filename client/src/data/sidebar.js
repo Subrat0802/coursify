@@ -9,19 +9,20 @@ export const sideBarItem = [
         path:"/dashboard"
     },
     {
-        id: 2,
-        title:"My Profile",
-        icon: "",
-        account:"Instructor",
-        path:"/dashboard/profile"
-    },
-    {
         id: 3,
         title:"My Courses",
         icon: "",
         account:"Instructor",
         path:"/dashboard/mycourses"
     },
+    {
+        id: 2,
+        title:"My Profile",
+        icon: "",
+        account:"Instructor",
+        path:"/dashboard/profile"
+    },
+    
     {
         id: 4,
         title:"Settings",

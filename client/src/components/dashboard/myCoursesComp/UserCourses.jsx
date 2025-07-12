@@ -13,7 +13,7 @@ const UserCourses = () => {
       {userData.accountType === "Instructor" ? (
         <InstructorMyCourses userData={userData} />
       ) : (
-        <StudentMyCourses />
+        <StudentMyCourses userData={userData}/>
       )}
     </div>
   );

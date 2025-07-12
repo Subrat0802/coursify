@@ -197,10 +197,10 @@ exports.getAllCourse = async (req, res) => {
     const response = await Course.find()
       .populate("instructor")
       .populate({
-        path:"courseContent",
-        populate:{
-          path:"subSection"
-        }
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+        },
       })
       .populate("category")
       .populate("studentEnrolled")
@@ -218,12 +218,71 @@ exports.getAllCourse = async (req, res) => {
       success: true,
       data: response, // ✅ Return the actual courses
     });
-
   } catch (error) {
     return res.status(500).json({
       message: "Server error while getting all courses.",
       success: false,
       error: error.message,
+    });
+  }
+};
+
+exports.buyCourse = async (req, res) => {
+  try {
+    const { courseId } = req.body;
+    const userid = req.user.id;
+    if (!courseId) {
+      res.status(400).json({
+        message: "Course id is not provided",
+        success: false,
+      });
+    }
+
+    const id = new mongoose.Types.ObjectId(courseId);
+
+    const course = await Course.findById(id);
+
+    if (!course) {
+      return res.status(404).json({
+        message: "Course id is not valid",
+        success: false,
+      });
+    }
+
+    const checkAlreadyBought = await User.findById(userid);
+
+    const check = checkAlreadyBought.courses.includes(courseId);
+
+    if (check) {
+      return res.status(400).json({
+        message: "You have already purchased this course.",
+        success: false,
+      });
+    }
+
+    const response = await User.findByIdAndUpdate(
+      userid,
+      { $addToSet: { courses: courseId } },
+      { new: true }
+    );
+
+    if (!response) {
+      return res.satus(404).json({
+        message: "Error while adding your course.",
+        success: false,
+      });
+    }
+
+    return res.status(200).json({
+      message: "Your course is added successfully",
+      success: true,
+      data: response,
+    });
+  } catch (error) {
+    console.log("Error", error);
+    return res.status(500).json({
+      message: "Server Error while adding course to student account",
+      success: false,
     });
   }
 };
