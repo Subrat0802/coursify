@@ -8,7 +8,8 @@ const {
   CREATE_SECTION_API,
   CREATE_SUB_SECTION_API,
   GET_ALL_COURSES_SECTION,
-  ADD_COURSE_TO_STUDENT
+  ADD_COURSE_TO_STUDENT,
+  MAKE_COURSE_PUBLISHED
 } = courseEndpoints;
 
 export const createCourse = async (
@@ -107,7 +108,7 @@ export const getAllCourses = () => {
 
 
 
-export const studentBuyCourse = async (courseId) => {
+export const studentBuyCourse = async (courseId, navigate) => {
   try {
     const response = await apiConnector("POST", ADD_COURSE_TO_STUDENT, { courseId });
     console.log("RESPONSE BUY COURSE", response);
@@ -117,7 +118,8 @@ export const studentBuyCourse = async (courseId) => {
     }
 
     toast.success(response.data.message);
-    return response.data;
+    navigate("/dashboard/mycourses")
+    return response.data.success;
   } catch (error) {
     console.error("ERROR BUY COURSE", error);
 
@@ -125,6 +127,30 @@ export const studentBuyCourse = async (courseId) => {
       error?.response?.data?.message || error.message || "Something went wrong";
 
     toast.error(errorMessage);
-    throw new Error(errorMessage); // re-throw if you want to handle it further upstream
+    throw new Error(errorMessage); 
   }
 };
+
+
+export const makeCoursePublished = async (courseId, navigate) => {
+  try{
+
+    const response = await apiConnector("POST", MAKE_COURSE_PUBLISHED, {courseId});
+    if(!response.data.success){
+      throw new Error("Error Sending API request, COurse publish");
+    }
+    toast.success(response.data.message);
+
+    navigate("/dashboard/mycourses")
+    console.log("MAKE COURSE PUBLISHED", response);
+    return response.data.success;
+  }catch(error){
+    console.error("ERROR BUY COURSE", error);
+
+    const errorMessage =
+      error?.response?.data?.message || error.message || "Something went wrong";
+
+    toast.error(errorMessage);
+    throw new Error(errorMessage); 
+  }
+}

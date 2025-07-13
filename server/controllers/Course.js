@@ -192,6 +192,8 @@ exports.createSubSection = async (req, res) => {
     });
   }
 };
+
+
 exports.getAllCourse = async (req, res) => {
   try {
     const response = await Course.find()
@@ -226,6 +228,42 @@ exports.getAllCourse = async (req, res) => {
     });
   }
 };
+
+
+exports.makeCousrePublished = async (req, res) => {
+  try{
+    const {courseId} = req.body;
+    if(!courseId) {
+      return res.status(400).json({
+        message:"Course id is not provided",
+        success:false
+      })
+    }
+
+    const response = await Course.findByIdAndUpdate(
+      courseId,
+      { status: "Published" },
+      { new: true }
+    );
+    
+    if(!response){
+      return res.status(400).json({
+        messge:"Not a valid course id",
+        success:false
+      })
+    }
+
+    return res.status(200).json({
+      message:"Your course is published now.",
+      success:true,
+      data:response
+    })
+  }catch(error){
+    return res.status(500).json({
+      message:"Server error while publishing course"
+    })
+  }
+}
 
 exports.buyCourse = async (req, res) => {
   try {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Button from './Button'
 
 const DashboardCourseCard = ({userData}) => {
   return (
@@ -13,7 +14,7 @@ const DashboardCourseCard = ({userData}) => {
             {userData.courses.map((el) => (
               <Link to={`/dashboard/mycourses/${el._id}`}><div
                 key={el._id}
-                className="flex flex-col cursor-pointer md:flex-row bg-[#141414] hover:shadow-lg  hover:border-r hover:border-white/10 rounded-xl overflow-hidden border-b border-b-white/10 shadow-sm"
+                className="flex flex-col cursor-pointer md:flex-row bg-[#141414] hover:shadow-lg border-r border-r-[#0f0f0f] hover:bg-[#0f0f0f] transition-all duration-200  hover:border-r hover:border-white/10 rounded-xl overflow-hidden border-b border-b-white/10 shadow-sm"
                >
                 {/* Thumbnail */}
                 <div className="md:w-[30%] w-full h-[180px] md:h-auto">
@@ -27,21 +28,21 @@ const DashboardCourseCard = ({userData}) => {
                 {/* Course Info */}
                 <div className="flex flex-col justify-between gap-2 p-5 text-white md:w-[70%] w-full">
                   <div>
-                    <h3 className="text-lg font-semibold">{el.title}</h3>
-                    <p className="text-sm text-white/80 line-clamp-2">
+                    <h3 className="text-2xl mb-2 font-semibold  text-white/80">{el.title}</h3>
+                    <p className="text-sm text-white/40  font-sans line-clamp-2">
                       {el.description}
                     </p>
-                    <p className="text-sm text-white/60 italic mt-1">
+                    <p className="text-sm text-white/40 font-sans mt-2 italic">
                       What you'll learn:{" "}
-                      <span className="text-white/70">
+                      <span className="text-white/30">
                         {el.whatYouWillLearn}
                       </span>
                     </p>
                   </div>
-
-                  {/* Course Meta Info */}
                   <div className="flex items-center justify-between text-sm text-white/50 mt-4">
-                    <span>
+                    
+                    <span>Price: ₹{el.price}</span>
+                    {userData.accountType === "Instructor" ? <span>
                       Status:{" "}
                       <span
                         className={`font-medium ${
@@ -52,8 +53,10 @@ const DashboardCourseCard = ({userData}) => {
                       >
                         {el.status}
                       </span>
-                    </span>
-                    <span>Price: ₹{el.price}</span>
+                    </span>: <div className='flex gap-3'>
+                          <Button text={"Ask anything"} btn={"primary"}/>
+                          <Button text={"Explore"} btn={"secondary"}/>
+                      </div>}
                   </div>
                 </div>
               </div></Link>

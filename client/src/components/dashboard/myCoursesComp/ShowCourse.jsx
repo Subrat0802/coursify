@@ -1,14 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ShowCourseLectures from "./ShowCourseLectures";
 import { LanguagesIcon, Star, StarIcon, Timer, User } from "lucide-react";
 import Button from "../../ui/Button";
-import { studentBuyCourse } from "../../../services/operations/courseApi";
+import { makeCoursePublished, studentBuyCourse } from "../../../services/operations/courseApi";
+import { getUser } from "../../../services/operations/authApi";
+import { setUserData } from "../../../slices/authSlice";
 
 const ShowCourse = () => {
   const para = useParams();
+  const dispatch = useDispatch();
   const loca = useLocation();
+  const navigate = useNavigate();
   const pathone = loca.pathname.split("/");
   console.log("LOCA", loca, pathone[2]);
   const course = useSelector((state) => state.course.allCourses);
@@ -16,8 +20,22 @@ const ShowCourse = () => {
 
   const courseData = course.find((el) => el._id === para.id) || null;
 
-  const handleBuyClick = () => {
-    studentBuyCourse(courseData._id);
+  const handleBuyClick = async () => {
+    const response = studentBuyCourse(courseData._id, navigate);
+    if(!response) {
+      throw new Error("Error while sending request publish course");
+    }
+    const userUpdate = await getUser();
+    dispatch(setUserData(userUpdate));
+  }
+
+  const handlePublishCourse = async () => {
+    const response = makeCoursePublished(courseData._id, navigate);
+    if(!response) {
+      throw new Error("Error while sending request publish course");
+    }
+    const userUpdate = await getUser();
+    dispatch(setUserData(userUpdate));
   }
 
   return (
@@ -72,7 +90,7 @@ const ShowCourse = () => {
               userType === "Student" && <Button text={"Buy Course "} onClick={handleBuyClick}  btn={"secondary"} classStyle={"w-full  text-black mt-2"}/>
           }
           {
-              userType === "Instructor" && <Button text={"Publish"}  btn={"secondary"} classStyle={"w-full  text-black mt-2"}/>
+              userType === "Instructor" && <Button onClick={handlePublishCourse} text={"Publish"}  btn={"secondary"} classStyle={"w-full  text-black mt-2"}/>
           }
         </div>
       </div>

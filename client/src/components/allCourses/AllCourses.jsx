@@ -11,7 +11,10 @@ const AllCourses = () => {
       <div className="text7xl flex gap-5 flex-wrap  w-full  text-white h-[100dvh]">
         {courses.map((el) => (
           <Link to={`show/${el._id}`}>
-            <CourseCard key={el._id} data={el} />
+            {
+              el.status === "Published" && <CourseCard key={el._id} data={el} />
+            }
+            
           </Link>
         ))}
       </div>
