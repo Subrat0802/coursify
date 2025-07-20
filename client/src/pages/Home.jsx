@@ -1,6 +1,7 @@
 import React from 'react'
 import SectionOne from '../components/homePage/SectionOne'
 import Sectiontwo from '../components/homePage/Sectiontwo'
+import SectionThree from '../components/homePage/SectionThree';
 
 const codeblockHTML = `<!doctype html>
 <html lang="en">
@@ -36,7 +37,7 @@ const Home = () => {
         <SectionOne />
         <Sectiontwo rev="flex-row" codeblock={codeblockHTML} desc={"Unlock your coding potential with our "} htext={"online courses."} subDesc={"Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."}/>
         {/* <Sectiontwo rev="flex-row-reverse" codeblock={codeblockREACT} desc={"Start coding in"} htext={"seconds."} subDesc={"Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."}/> */}
-        
+        <SectionThree />
     </div>
   )
 }
