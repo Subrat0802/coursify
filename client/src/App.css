@@ -100,3 +100,30 @@ body::-webkit-scrollbar-thumb {
                      var(--sb-track-color);
   }
 }
+
+
+.reviews-scroll {
+  --sb-track-color: #0f0f0f;
+  --sb-thumb-color: #393a39;
+  --sb-size: 7px;
+}
+
+.reviews-scroll::-webkit-scrollbar {
+  height: var(--sb-size); /* only horizontal for reviews */
+}
+
+.reviews-scroll::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 3px;
+}
+
+.reviews-scroll::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 3px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .reviews-scroll {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}

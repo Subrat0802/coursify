@@ -43,8 +43,24 @@ const SectionFour = () => {
             );
           })}
         </div>
-        <div className="w-[50%] p-4 ">
+        <div className="w-[50%] p-4 relative border border-dashed border-white/30 ">
           <img src="https://studynotion-frontend.vercel.app/static/media/TimelineImage.a610b1e5d891ac77fe93.png" />
+          <div className="w-[90%] mx-auto absolute p-9 -bottom-14 left-1/2 transform -translate-x-1/2 right-0 bg-[#047857] flex justify-around items-center">
+            <div className="flex gap-7 justify-center items-center border-r w-[50%]">
+              <p className="text-3xl font-bold">10</p>
+              <div className="flex flex-col text-green-500">
+                <p>YEARS</p>
+                <p>EXPERIENCE</p>
+              </div>
+            </div>
+            <div className="flex gap-7 justify-center items-center">
+              <p className="text-3xl font-bold">250</p>
+              <div className="flex flex-col text-green-500">
+                <p>TYPES OF</p>
+                <p>COUSRES</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

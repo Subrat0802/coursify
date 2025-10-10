@@ -161,3 +161,36 @@ export const fourthSection = [
     }
 
 ]
+
+export const reviewsData = [
+  {
+    id: "1",
+    name: "Aarav Sharma",
+    rating: 5,
+    comment: "This platform completely changed the way I learn. The instructors are amazing and the content is top-notch!",
+  },
+  {
+    id: "2",
+    name: "Priya Mehta",
+    rating: 4,
+    comment: "Very good experience overall. The only thing I’d suggest is adding more practice projects.",
+  },
+  {
+    id: "3",
+    name: "Rahul Verma",
+    rating: 5,
+    comment: "Excellent courses and very practical approach. I was able to land my first job after completing the career path.",
+  },
+  {
+    id: "4",
+    name: "Sneha Kapoor",
+    rating: 4,
+    comment: "Great platform for beginners! The explanations are clear and easy to follow.",
+  },
+  {
+    id: "5",
+    name: "Vikram Singh",
+    rating: 5,
+    comment: "Totally worth it! The roadmap and structured learning paths made my journey smooth and effective.",
+  },
+];

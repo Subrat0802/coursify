@@ -11,7 +11,7 @@ const SectionThree = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto mb-16 flex flex-col font-sans justify-center items-center mt-36">
+    <div className="max-w-7xl mx-auto mb-36 flex flex-col font-sans justify-center items-center my-44 ">
 
       <div className="text-center text-white/50 mb-7">
         <p className="text-4xl font-bold">Unlock the Power of Code</p>

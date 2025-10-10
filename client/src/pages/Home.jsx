@@ -3,6 +3,8 @@ import SectionOne from '../components/homePage/SectionOne'
 import Sectiontwo from '../components/homePage/Sectiontwo'
 import SectionThree from '../components/homePage/SectionThree';
 import SectionFour from '../components/homePage/SectionFour';
+import SectionFive from '../components/homePage/SectionFive';
+import SectionSix from '../components/homePage/SectionSix';
 
 const codeblockHTML = `<!doctype html>
 <html lang="en">
@@ -40,6 +42,8 @@ const Home = () => {
         {/* <Sectiontwo rev="flex-row-reverse" codeblock={codeblockREACT} desc={"Start coding in"} htext={"seconds."} subDesc={"Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."}/> */}
         <SectionFour />
         <SectionThree />
+        <SectionFive />
+        <SectionSix />
     </div>
   )
 }
