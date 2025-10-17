@@ -39,10 +39,10 @@ const ShowCourse = () => {
   }
 
   return (
-    <div className={`${pathone[2] == "show" ? "flex p-10  gap-4 px-36 justify-center " : "relative"}`}>
-      <div className="flex flex-col   w-[] ">
+    <div className={`${pathone[2] == "show" ? "flex p-10  gap-4 px-36 justify-center " : "flex"}`}>
+      <div className="flex flex-col   w-[70%] ">
 
-      <div className="bg-[#131313] relative py-5 rounded-t-lg">
+      <div className="bg-[#131313] py-5 rounded-t-lg">
         <div className="max-w-3xl text-sm  px-5  border-r border-white/10">
           <p className="text-2xl font-bold mb-3 text-white">
             {courseData.title}
@@ -82,18 +82,18 @@ const ShowCourse = () => {
       </div>
       </div>
 
-      <div className={`${pathone[2] == "show" ? "max-w-[26rem]  bg-[#242424] right-8 top-8 rounded-xl h-fit" : "absolute bg-[#242424] right-8 top-8 w-[30vw] rounded-xl"}`}>
+      {<div className={`${pathone[2] == "show" ? "w-[30%]  bg-[#242424] right-8 top-8 rounded-xl h-fit" : " bg-[#242424] right-8 top-8 w-[30vw] rounded-xl"}`}>
         <img className="rounded-t-lg" src={courseData.thumbnail} />
         <div className="p-5 font-sans">
           <p className="text-3xl font-bold">Rs. {courseData.price}</p>
           {
-              userType === "Student" && <Button text={"Buy Course "} onClick={handleBuyClick}  btn={"secondary"} classStyle={"w-full  text-black mt-2"}/>
+              userType === "Student"  && <Button text={"Buy Course "} onClick={handleBuyClick}  btn={"secondary"} classStyle={"w-full  text-black mt-2"}/>
           }
           {
               userType === "Instructor" && <Button onClick={handlePublishCourse} text={"Publish"}  btn={"secondary"} classStyle={"w-full  text-black mt-2"}/>
           }
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

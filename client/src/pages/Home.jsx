@@ -5,6 +5,7 @@ import SectionThree from '../components/homePage/SectionThree';
 import SectionFour from '../components/homePage/SectionFour';
 import SectionFive from '../components/homePage/SectionFive';
 import SectionSix from '../components/homePage/SectionSix';
+import Footer from '../components/common/Footer';
 
 const codeblockHTML = `<!doctype html>
 <html lang="en">
@@ -44,6 +45,7 @@ const Home = () => {
         <SectionThree />
         <SectionFive />
         <SectionSix />
+        <Footer />
     </div>
   )
 }
