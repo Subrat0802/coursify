@@ -13,6 +13,7 @@ const CreateCourseForm = () => {
 
   const dispatch = useDispatch();
   const categoryData = useSelector((state) => state.category.categories);
+  const [loading, setLoading] = useState(false);
   const [formState, setFormState] = useState(1);
   const [courseData, setCourseData] = useState({
     title: "",
@@ -41,6 +42,8 @@ const CreateCourseForm = () => {
       return;
     }
 
+    setLoading(true);
+
     const response = await createCourse(
       title,
       description,
@@ -54,7 +57,9 @@ const CreateCourseForm = () => {
       toast.success(response.data.message);
 
         dispatch(setCourseId(response.data.data));
-      setFormState(2);
+        setLoading(false);
+        setFormState(2);
+     
     } else {
       toast.error(
         response.response?.data?.message || "Server error. Try again."
@@ -212,7 +217,7 @@ const CreateCourseForm = () => {
           <div className="pt-4">
             <Button
               onClick={handleSubmit}
-              text="Create Course"
+              text={`${ loading ? "Wait..." : "Create Course"}`}
               btn="secondary"
               classStyle="w-full"
             />

@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ShowCourseLectures from "./ShowCourseLectures";
 import { LanguagesIcon, Star, Timer, User } from "lucide-react";
 import Button from "../../ui/Button";
-import { makeCoursePublished, studentBuyCourse } from "../../../services/operations/courseApi";
+import {  makeCoursePublished, studentBuyCourse } from "../../../services/operations/courseApi";
 import { getUser } from "../../../services/operations/authApi";
 import { setUserData } from "../../../slices/authSlice";
 
@@ -33,6 +33,11 @@ const ShowCourse = () => {
     const userUpdate = await getUser();
     dispatch(setUserData(userUpdate));
   };
+
+
+  console.log("status",courses.status)
+
+  
 
   return (
     <div className={`overflow-x-hidden flex flex-col lg:flex-row p-5 md:p-10 gap-6 justify-center`}>
@@ -96,14 +101,19 @@ const ShowCourse = () => {
             />
           )}
 
-          {userType === "Instructor" && (
+          {
+            courseData.status === "Published" ? <div></div> : 
+              userType === "Instructor" && (
             <Button
               text="Publish"
               onClick={handlePublishCourse}
               btn="secondary"
-              classStyle="w-full mt-3 text-black"
+              classStyle={`w-full mt-3 text-black`}
             />
           )}
+
+
+          
         </div>
       </div>
 
