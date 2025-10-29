@@ -8,7 +8,7 @@ const AllCourses = () => {
     <div className="px-10 pt-5">
       <div></div>
 
-      <div className="text7xl flex gap-5 flex-wrap  w-full  text-white h-[100dvh]">
+      <div className="text7xl flex gap-5 flex-wrap  w-full  text-white min-h-[100dvh]">
         {courses.map((el) => (
           <Link to={`show/${el._id}`}>
             {

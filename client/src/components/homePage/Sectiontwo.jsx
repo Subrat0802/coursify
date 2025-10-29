@@ -7,7 +7,7 @@ import Htext from "../ui/Htext";
 
 const Sectiontwo = ({ rev, codeblock, desc, subDesc, htext }) => {
   return (
-    <div className=" w-full flex justify-center pb-10 md:py-10 mb-16 ">
+    <div className=" w-full flex justify-center md:pb-10 md:py-10 md:mb-16 ">
       <div
         className={`md:flex ${rev} gap-10  text-white w-full max-w-7xl `}
       >
@@ -34,7 +34,7 @@ const Sectiontwo = ({ rev, codeblock, desc, subDesc, htext }) => {
           </div>
         </div>
         {/* //"#5227FF", "#7cff67", "#5227FF" */}
-        <div className=" border border-white/10 relative text-[13px] flex md:w-full md:text-sm mx-4 md:mx-0">
+        <div className=" border border-white/10 relative  flex md:w-full text-[8px] md:text-sm mx-4 md:mx-0">
           <div className="absolute text-yellow-100  w-[60%] m-16 h-[70%] bg-gradient-to-br from-[#342961] via-[#134d0b] to-[#5227FF] rounded-full blur-3xl"></div>
           <div className=" flex flex-col  text-yellow-100   w-fit px-1  py-1">
             <p>1</p>

@@ -20,7 +20,7 @@ const SectionThree = () => {
       <div className="flex gap-3 md:gap-10 justify-between items-center bg-gray-800/40 rounded-full border-b border-gray-700 p-1">
         {learnAnyThing.map((el) => (
           <p
-            className={`md:text-md  p-2 px-2 md:px-4 cursor-pointer transition-all duration-200 rounded-full hover:bg-black ${
+            className={`text-[8px] text-center md:text-[14px]  p-2 px-2 md:px-4 cursor-pointer transition-all duration-200 rounded-full hover:bg-black ${
               textState === el.title ? "bg-black rounded-full" : ""
             }`}
             key={el.id}
@@ -54,13 +54,14 @@ const SectionThree = () => {
           ))}
       </div>
 
-      <div className=" flex mt-10 gap-7">
+      <div className=" flex mt-10 gap-4 md:gap-7">
         <Button
+          classStyle={"text-sm"}
           text={"Explore Full Catalog"}
           btn={"primary"}
           icon={<FaArrowRight />}
         />
-        <Button text={"Learn More"} btn={"secondary"} />
+        <Button classStyle={"text-sm"} text={"Learn More"} btn={"secondary"} />
       </div>
     </div>
   );

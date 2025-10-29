@@ -3,7 +3,7 @@ import { reviewsData } from '../../data/homePage'
 
 const SectionSix = () => {
   return (
-    <div className='max-w-7xl flex flex-col gap-8 mx-auto pb-10'>
+    <div className='px-5 md:px-0 max-w-7xl flex flex-col gap-8 mx-auto pb-10'>
       <p className='text-xl font-semibold'>Reviews</p>
 
       <div className='overflow-x-scroll reviews-scroll'>
