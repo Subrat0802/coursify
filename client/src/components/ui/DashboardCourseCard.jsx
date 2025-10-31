@@ -17,7 +17,7 @@ const DashboardCourseCard = ({userData}) => {
                 className="flex flex-col cursor-pointer md:flex-row bg-[#141414] hover:shadow-lg border-r border-r-[#0f0f0f] hover:bg-[#0f0f0f] transition-all duration-200  hover:border-r hover:border-white/10 rounded-xl overflow-hidden border-b border-b-white/10 shadow-sm"
                >
                 {/* Thumbnail */}
-                <div className="md:w-[30%] w-full h-[180px] md:h-auto">
+                <div className="md:w-[30%] w-full md:h-auto">
                   <img
                     src={el.thumbnail}
                     alt={el.title}

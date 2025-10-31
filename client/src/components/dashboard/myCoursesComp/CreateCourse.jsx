@@ -4,8 +4,8 @@ import CreateCourseForm from "./CreateCourseForm";
 
 const CreateCourse = () => {
   return (
-    <div className="w-full flex min-h-[91vh] p-7   font-sans">
-      <div className="w-[70%] ">
+    <div className="w-full flex flex-col md:flex-row min-h-[91vh] md:p-7  font-sans">
+      <div className="md:w-[70%] w-[100%] ">
         <div className="text-[11px] flex gap-2 mb-3">
           <Link to={"/dashboard/mycourses"}>
             <p>My courses</p>
@@ -18,7 +18,7 @@ const CreateCourse = () => {
             <CreateCourseForm />
         </div>
       </div>
-      <div className="w-[30%] ">
+      <div className=" invisible md:visible md:w-[30%] w-full ">
         <div className="p-3 bg-[#131313] rounded-lg fixed right-6 w-[25%]">
           <p className="font-bold text-xl">⚡Course Upload Tips</p>
           <ul className="list-disc pl-7 flex flex-col gap-2">

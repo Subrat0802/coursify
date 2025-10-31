@@ -49,7 +49,7 @@ const Header = () => {
       <div className="flex max-w-7xl mx-auto items-center h-full justify-between ">
         <div>
           <Link to={"/"}>
-            <p className="font-mono font-bold text-3xl">Coursify</p>
+            <p className="font-mono font-bold text-xl md:text-3xl">Coursify</p>
           </Link>
         </div>
         <div className="hidden md:block">

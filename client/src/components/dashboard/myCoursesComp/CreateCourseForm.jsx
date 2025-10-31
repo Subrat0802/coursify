@@ -68,7 +68,7 @@ const CreateCourseForm = () => {
   };
 
   return (
-    <div className="py-10 px-4 sm:px-6">
+    <div className="py-10 md:px-4 sm:px-6">
 
       {/* progress bar */}
       <div className="flex items-center gap-4 justify-center mb-10">

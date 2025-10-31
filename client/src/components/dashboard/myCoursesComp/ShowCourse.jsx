@@ -35,8 +35,11 @@ const ShowCourse = () => {
   };
 
 
-  console.log("status",courses.status)
+  // console.log("status",courses.status)
 
+  if(courses === null){
+    return <div>Loading...</div>
+  }
   
 
   return (
