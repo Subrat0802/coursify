@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import ShowCourseLectures from "./ShowCourseLectures";
 import { LanguagesIcon, Star, Timer, User } from "lucide-react";
 import Button from "../../ui/Button";
-import {  makeCoursePublished, studentBuyCourse } from "../../../services/operations/courseApi";
+import {  makeCoursePublished, studentBuyCourse, getAllCourses } from "../../../services/operations/courseApi";
 import { getUser } from "../../../services/operations/authApi";
 import { setUserData } from "../../../slices/authSlice";
 
@@ -16,9 +16,19 @@ const ShowCourse = () => {
   // const pathType = location.pathname.split("/")[2];
   
   const courses = useSelector((state) => state.course.allCourses);
-  const userType = useSelector((state) => state.auth.userData.accountType);
+  const userData = useSelector((state) => state.auth.userData);
+  const userType = userData?.accountType;
 
-  const courseData = courses.find((el) => el._id === id);
+  useEffect(() => {
+    if (!courses) {
+      dispatch(getAllCourses());
+    }
+  }, [courses, dispatch]);
+
+  const courseData = courses?.find((el) => el._id === id);
+  const alreadyBought = Array.isArray(userData?.courses)
+    ? userData.courses.some((c) => (c?._id || c) === id)
+    : false;
 
   const handleBuyClick = async () => {
     const response = await studentBuyCourse(courseData._id, navigate);
@@ -37,8 +47,8 @@ const ShowCourse = () => {
 
   // console.log("status",courses.status)
 
-  if(courses === null){
-    return <div>Loading...</div>
+  if (!courses || !courseData) {
+    return <div className="text-white p-6">Loading...</div>
   }
   
 
@@ -53,31 +63,25 @@ const ShowCourse = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">{courseData?.title}</h2>
           <p className="text-white/50 text-sm md:text-base">{courseData?.description}</p>
 
-          {/* RATING */}
-          <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-white/30">
-            <p>Rating:</p>
-            <div className="flex gap-1 text-yellow-400/90">
-              <Star className="w-4 h-4" />
-              <Star className="w-4 h-4" />
-              <Star className="w-4 h-4" />
-              <Star className="w-4 h-4" />
+          {/* RATING / ENROLLMENT */}
+          <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-white/60">
+            <div className="flex items-center gap-1">
+              <Star className="w-4 h-4 text-yellow-400/90" />
+              <p>{Array.isArray(courseData?.ratingAndReviews) ? courseData.ratingAndReviews.length : 0} reviews</p>
             </div>
-            <p>(650 ratings) - 1769 Students enrolled</p>
+            <span className="hidden sm:block">•</span>
+            <p>{Array.isArray(courseData?.studentEnrolled) ? courseData.studentEnrolled.length : 0} students enrolled</p>
           </div>
 
           {/* COURSE INFO */}
-          <div className="mt-4 flex flex-col md:flex-row gap-4 text-xs text-white/30">
-            <div className="flex items-center gap-1">
-              <Timer className="w-4 h-4" />
-              <p>Created: 24/02/2012</p>
-            </div>
+          <div className="mt-4 flex flex-col md:flex-row gap-4 text-xs text-white/60">
             <div className="flex items-center gap-1">
               <LanguagesIcon className="w-4 h-4" />
               <p>Language: English</p>
             </div>
             <div className="flex items-center gap-1">
               <User className="w-4 h-4" />
-              <p>Instructor: Subrat Mishra</p>
+              <p>Instructor: {courseData?.instructor?.firstname ? `${courseData.instructor.firstname} ${courseData.instructor.lastname || ""}` : "N/A"}</p>
             </div>
           </div>
         </div>
@@ -95,13 +99,16 @@ const ShowCourse = () => {
         <div className="p-5">
           <p className="text-xl md:text-3xl font-bold">Rs. {courseData?.price}</p>
 
-          {userType === "Student" && (
+          {userType === "Student" && !alreadyBought && (
             <Button
               text="Buy Course"
               onClick={handleBuyClick}
               btn="secondary"
               classStyle="w-full mt-3 text-black"
             />
+          )}
+          {userType === "Student" && alreadyBought && (
+            <div className="w-full mt-3 text-center text-sm text-green-400">Already purchased</div>
           )}
 
           {

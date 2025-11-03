@@ -5,6 +5,7 @@ import { FaVideo } from "react-icons/fa6";
 const ShowCourseLectures = ({ matchCourse }) => {
 
   const [openSectionId, setOpenSectionId] = useState(null);
+  const [currentVideoUrl, setCurrentVideoUrl] = useState("");
 
   const handleClick = (sectionId) => {
     setOpenSectionId((prev) => (prev === sectionId ? null : sectionId));
@@ -20,6 +21,16 @@ const ShowCourseLectures = ({ matchCourse }) => {
 
   return (
     <div className="p-4 border border-white/10 rounded-b-lg bg-[#131313] text-white">
+      {currentVideoUrl && (
+        <div className="mb-4 rounded-lg overflow-hidden bg-black">
+          <video
+            key={currentVideoUrl}
+            controls
+            src={currentVideoUrl}
+            className="w-full max-h-[60vh]"
+          />
+        </div>
+      )}
       <div className="flex flex-col gap-4">
         {matchCourse.courseContent.map((section) => (
           <div
@@ -49,6 +60,7 @@ const ShowCourseLectures = ({ matchCourse }) => {
                     <div
                       key={lecture._id}
                       className="flex justify-between items-center px-5 py-3 border-t border-white/5 hover:bg-[#252525]"
+                      onClick={() => lecture.videoUrl && setCurrentVideoUrl(lecture.videoUrl)}
                     >
                       <div className="flex items-center gap-3 text-base text-white">
                         <FaVideo className="text-violet-400" />

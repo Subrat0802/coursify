@@ -4,7 +4,7 @@ const MyCourses = () => {
   
   
   return (
-    <div className='w-full min-h-[91vh] font-sans p-10'>
+    <div className='w-full min-h-[91vh] font-sans p-4 md:p-10'>
       <Outlet />
     </div>
   )

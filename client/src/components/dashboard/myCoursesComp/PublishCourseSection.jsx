@@ -18,7 +18,10 @@ const PublishCourseSection = () => {
 
     const handleClick = () => {
         toast.success("Course created successfully");
-        navigate("/dashboard/mycourses");
+        navigate("/dashboard/mycourses", { replace: true });
+        setTimeout(() => {
+            window.location.reload();
+        }, 50);
     }
     return (
     <div className=''>

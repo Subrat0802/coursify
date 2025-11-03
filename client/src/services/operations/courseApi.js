@@ -118,7 +118,10 @@ export const studentBuyCourse = async (courseId, navigate) => {
     }
 
     toast.success(response.data.message);
-    navigate("/dashboard/mycourses")
+    navigate("/dashboard/mycourses", { replace: true })
+    setTimeout(() => {
+      window.location.reload();
+    }, 50);
     return response.data.success;
   } catch (error) {
     console.error("ERROR BUY COURSE", error);
@@ -141,7 +144,10 @@ export const makeCoursePublished = async (courseId, navigate) => {
     }
     toast.success(response.data.message);
 
-    navigate("/dashboard/mycourses")
+    navigate("/dashboard/mycourses", { replace: true })
+    setTimeout(() => {
+      window.location.reload();
+    }, 50);
     console.log("MAKE COURSE PUBLISHED", response);
     return response.data.success;
   }catch(error){

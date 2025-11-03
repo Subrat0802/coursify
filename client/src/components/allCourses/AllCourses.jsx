@@ -1,15 +1,19 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CourseCard from "../ui/CourseCard";
 
 const AllCourses = () => {
     const courses = useSelector((state) => state.course.allCourses) || [];
+    const { id: categoryId } = useParams();
+    const filtered = categoryId 
+      ? courses.filter((c) => c?.category?._id === categoryId)
+      : courses;
   return (
     <div className="px-10 pt-5">
       <div></div>
 
       <div className="text7xl flex gap-5 flex-wrap  w-full  text-white min-h-[100dvh]">
-        {courses.map((el) => (
+        {filtered.map((el) => (
           <Link to={`show/${el._id}`}>
             {
               el.status === "Published" && <CourseCard key={el._id} data={el} />

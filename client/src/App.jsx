@@ -52,6 +52,7 @@ function App() {
         </Route>
         <Route path="/allcourses" element={<Courses />}>
           <Route index element={<AllCourses />}/>
+          <Route path="category/:id" element={<AllCourses />}/>
           <Route path="show/:id" element={<ShowCourse />}/>
         </Route>
         

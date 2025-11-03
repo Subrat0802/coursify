@@ -2,10 +2,10 @@ import { Book, User } from "lucide-react";
 import React from "react";
 
 const CourseCard = (props) => {
-  const { key, data } = props;
+  const { key, data, fullWidth } = props;
 
   return (
-    <div key={key} className="rounded-lg cursor-pointer hover:scale-95 hover:border-b-2 transition-all duration-300 p-4 h-fit max-w-sm border border-white/10">
+    <div key={key} className={`rounded-lg cursor-pointer hover:scale-95 hover:border-b-2 transition-all duration-300 p-4 h-fit border border-white/10 ${fullWidth ? "w-full" : "max-w-sm"}`}>
       <img className="rounded-lg" src={data.thumbnail} />
 
       <p className="mb-2 truncate overflow-hidden mt-2 text-white/70 whitespace-nowrap w-[90%] text-2xl font-sans font-bold">
