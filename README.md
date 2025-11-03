@@ -62,21 +62,22 @@ A complete e-learning platform where **instructors** can sign up, upload, and se
     npm start
 
 # 📁 Folder Structure
-  coursify/
-    │
-    ├── client/              # React frontend
-    │   ├── src/
-    │   ├── public/
-    │   └── package.json
-    │
-    ├── server/              # Express backend
-    │   ├── routes/
-    │   ├── models/
-    │   ├── controllers/
-    │   ├── server.js
-    │   └── package.json
-    │
-    └── README.md
+  ```bash
+   coursify/
+   ├── client/              # React frontend
+   │   ├── src/
+   │   ├── public/
+   │   └── package.json
+   │
+   ├── server/              # Express backend
+   │   ├── routes/
+   │   ├── models/
+   │   ├── controllers/
+   │   ├── server.js
+   │   └── package.json
+   │
+   └── README.md
+
 
 
 
