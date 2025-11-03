@@ -108,9 +108,7 @@ const Header = () => {
         <div className="flex justify-center items-center gap-2">
           {token && user ? (
             <div className="flex gap-5 justify-center items-center">
-              {/* <p className="cursor-pointer" onClick={handleLogOut}>
-              logout
-            </p> */}
+              
             <ShoppingCart className="cursor-pointer hover:text-yellow-400" />
               <Link to="/dashboard">
                 <div className="relative flex flex-col group items-center">

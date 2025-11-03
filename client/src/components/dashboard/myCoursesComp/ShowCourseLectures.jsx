@@ -37,7 +37,6 @@ const ShowCourseLectures = ({ matchCourse }) => {
             key={section._id}
             className="border border-white/10 rounded-lg bg-[#1b1b1b]"
           >
-            {/* Section Header */}
             <div
               className="flex justify-between items-center p-3 cursor-pointer hover:bg-[#222] transition-all"
               onClick={() => handleClick(section._id)}
@@ -50,7 +49,6 @@ const ShowCourseLectures = ({ matchCourse }) => {
               )}
             </div>
 
-            {/* Subsections */}
             {openSectionId === section._id && (
               <div className="flex flex-col cursor-pointer">
                 {section.subSection.length === 0 ? (

@@ -11,9 +11,7 @@ import { setUserData } from "../../../slices/authSlice";
 const ShowCourse = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  // const location = useLocation();
   const navigate = useNavigate();
-  // const pathType = location.pathname.split("/")[2];
   
   const courses = useSelector((state) => state.course.allCourses);
   const userData = useSelector((state) => state.auth.userData);
@@ -43,10 +41,6 @@ const ShowCourse = () => {
     const userUpdate = await getUser();
     dispatch(setUserData(userUpdate));
   };
-
-
-  // console.log("status",courses.status)
-
   if (!courses || !courseData) {
     return <div className="text-white p-6">Loading...</div>
   }

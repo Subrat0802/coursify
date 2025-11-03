@@ -15,7 +15,6 @@ const MyProfile = () => {
 
   return (
     <div className="w-full min-h-[91vh] p-4 sm:p-6 md:p-10 flex flex-col font-sans gap-6">
-      {/* Top Section */}
       <div className="w-full flex flex-col md:flex-row items-center md:items-start bg-[#1A1A1D] rounded-lg p-6 sm:p-8 md:p-10 shadow-xl gap-6">
         <img
           className="rounded-full w-28 h-28 sm:w-36 sm:h-36 object-cover"
@@ -45,7 +44,6 @@ const MyProfile = () => {
         </div>
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="p-5 rounded-lg bg-[#1A1A1D] border border-white/10 text-white">
           <p className="text-white/50 text-sm flex items-center gap-2"><BookOpen className="w-4 h-4" /> {isInstructor ? "Your Courses" : "Enrolled Courses"}</p>
@@ -65,7 +63,6 @@ const MyProfile = () => {
         </div>
       </div>
 
-      {/* About & Personal Details */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2 p-6 rounded-lg bg-[#1A1A1D] border border-white/10 text-white">
           <div className="flex items-center justify-between">

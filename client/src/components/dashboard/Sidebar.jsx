@@ -51,9 +51,6 @@ const Sidebar = () => {
                     <p className="hidden md:block">{el.title}</p>
                 </li>
                 
-                {/* {sidebar === el.title && (
-                    <div className="absolute right-0 w-1 h-full bg-white rounded-l-md"></div>
-                )} */}
             </div>
           ) : (
             <Link to={el.path} key={el.id} onClick={() => handleSidebar(el.title)}>
